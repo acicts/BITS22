@@ -161,6 +161,7 @@ Now the ```.env``` file is completed. If you have made it this far that means yo
 
 Now you can go ahead and run the code using below command. 
 ```javascript
+npm run build
 npm start
 ```
 If the code is running without an error, Congrats 🥳🥳. Everything is working as expected. You should celebrate a bit. Now find bugs, improvements and make this code awesome.
