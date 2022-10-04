@@ -23,11 +23,11 @@
     <main class="main">
       <section class="tasks">
         <div class="task-list">
-          <br>
+          <% filteredQuiz.forEach(function(data) { %>
           <div class="task-item">
             <div class="ti-bg-acnt tibg-tr"></div>
             <div class="ti-bg-acnt tibg-bl"></div>
-            <% filteredQuiz.forEach(function(data) { %>
+            
               <div class="ti-info">
                 <h4>
                   <%= data.test_name %>
@@ -50,10 +50,11 @@
                 <% } else { %>
                   <input type="submit" value="Quiz has not started" disabled></input><br><br>
                   <% } %>
-                    <% }) %>
+                    
           </div>
         </div>
         </div>
+        <% }) %>
         </div>
       </section>
     </main>
