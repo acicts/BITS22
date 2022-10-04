@@ -122,7 +122,7 @@
 			}).then((res) => {
 				if (res.status == 201) {
 					formSubmit()
-					window.location.href = "/login"
+					window.location.href = "/"
 				} 
 				else if (res.status == 200) {
 					res.json().then((data) => {
