@@ -44,7 +44,7 @@ const isEnabled = async (req, res, next) => {
   if (!data.competition_enabled) {
     res.json({
       code: 403,
-      message: "Competition Has Not Started Yet. Please wait until 1st october",
+      message: "Competition starts on 8th October. Stay tuned!",
     });
   } else {
     next();
