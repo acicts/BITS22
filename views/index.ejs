@@ -50,7 +50,7 @@
     <%- include("partials/footer", { active: "home" }) %>
 
  <script>
-  var countDownDate = new Date("Oct 5, 2022 00:00:00").getTime();
+  var countDownDate = new Date("Oct 5, 2022 18:00:00").getTime();
            
   var x = setInterval(function() {
   var now = new Date().getTime();
@@ -66,6 +66,7 @@
    if (distance < 0) {
     clearInterval(x);
     document.getElementById("time").innerHTML = "Registrations Opened";
+    document.getElementById("time").setAttribute("href", "/signup");
    }
   }, 1000);
  </script>
