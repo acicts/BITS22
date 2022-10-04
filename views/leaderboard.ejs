@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BITS'22 | Leaderboard</title>
+    <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="/css/leaderboard.css" rel="stylesheet">
+  </head>
+  <body>
+    <%- include("partials/nav", { active: "lead" , user: username}) %>
+
+    <main class="main">
+      <section class="leaderboard">
+        <div class="thead">
+          <p class="tfield-rank">#</p>
+          <p class="tfield-name">Name</p>
+          <p class="tfield-grade">Class</p>
+          <p class="tfield-tasks">No. Of Tasks Accepted</p>
+          <p class="tfield-points">Points</p>
+        </div>
+        <table>
+          <tbody>
+            <%db.forEach(function(data) { %>
+            <tr>
+              <th class="tfield-rank"><%= i++ %></th>
+              <td class="tfield-name"><%= data.same[0].username %></td>
+              <td class="tfield-grade"><%= String(data.same[0].grade).replace(/1000/g, ' ') %></td>
+              <td class="tfield-tasks"><%= data.approved_tasks.length %></td>
+              <td class="tfield-points"><%= data.total_points %></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </section>
+    </main>
+    
+    <%- include("partials/footer", { active: "lead" }) %>
+
+  </body>
+</html>

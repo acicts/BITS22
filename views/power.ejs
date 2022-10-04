@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+    <center><h2>Hello Power Admin. Enable or Disable the Competition</h2></center><br>
+    <center>
+                    <% if(!data.competition_enabled){ %>
+                      <form action="/admin/competition/enable" method="post">
+                        <button type="submit" class="btn btn-primary">Enable Competition</button><br><br>
+                      </form>
+                      <% } else{ %>
+                      <form action="/admin/competition/disable" method="post">  
+                        <button type="submit" class="btn btn-primary">Disable Competition</button><br><br>
+                        </form>
+                     <% } %>
+    </center>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>

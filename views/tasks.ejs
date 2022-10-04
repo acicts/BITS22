@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% const icon = {"CODING": "fa-solid fa-code", "DESIGN": "fa-solid fa-pen", "EXPLORE": "fa-solid fa-magnifying-glass"} %>
+  <% const cat = {"CODING": "Code", "DESIGN": "Design", "EXPLORE": "Explore"} %>
+  <% const getStatus = () => { %>
+    <% if (approvedArray.includes(id)) { return "accepted" %>
+    <% } else if (pendingArray.includes(id)) { return "pending" %>
+    <% } else if (declineArray.includes(id)) { return "rejected"  %>
+    <% } else { return "none" %>
+  <% }} %>
+  <%# NOTE: ^^^ EJS requires you to put the closing bracket "}" in a seperate line to the original if/else if statement. Do NOT put the closing bracket in the same line or else it won't work.%>
+  <% const status = getStatus() %>
+  <% let mode = "" %>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BITS '22 | <%=cat[category]%> <%=id%></title>
+  <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+  <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/tasks.css">
+</head>
+<body>
+  <%- include('partials/nav', {active: "task", user: username}) %>
+
+  <main class="main">
+    <section class="side-panel">
+      <div class="button-menu">
+        <div class="bm-btn back-btn">
+          <a href="/tasks"><i class="fa-solid fa-chevron-left"></i>Back to Tasks</a>
+        </div>
+        <div class="bm-btn help-btn">
+          <a href="/profile"><i class="fa-solid fa-list-check"></i>Profile</a>
+        </div>
+      </div>
+      <div class="upload-menu">
+        <div class="ti-bg-acnt tibg-tr panel-acnt-<%=status%>"></div>
+        <div class="ti-bg-acnt tibg-bl panel-acnt-<%=status%>"></div>
+
+        <div class="um-header">
+          <i class="<%=icon[category]%>"></i>
+          <p class="um-header-cat"><%= cat[category] %></p>
+          <p class="um-header-id"><%= id %></p>
+        </div>
+        <div class="um-info">
+          <% if (status == "none" || status == "rejected") { %>
+            <p>Please make sure your project complies with <a href="/help#guidlines">submission guidlines</a> before submitting.</p>
+          <% } else if (status == "accepted") { %>
+            <p>Congrats, your submission has been accepted. Good job! <i class="fa-solid fa-check-double"></i></p>
+          <% } else if (status == "pending") { %>
+            <p>Your submission is still being reviewed. Why not try do some more tasks in the meantime? <i class="fa-solid fa-hourglass-half"></i></p>
+          <% } %>
+        </div>
+        <div class="um-form">
+          <form id="submit-form">
+            <% if (status == "none" || status == "rejected") { %>
+            <div class="form-input-err">
+                <p id="form-err">Oh look, you just found a bug :/</p>
+              </div>
+              <div class="form-input-field">
+                <label for="url"><i class="fa-solid fa-link"></i> Project URL</label>
+                <input name="url" type="url" placeholder="Project URL" required>
+              </div>
+              <div class="form-input-field">
+                <label for="feedback"><i class="fa-solid fa-sticky-note"></i> Additional Remarks</label>
+                <textarea name="feedback" placeholder="No additional remarks" optional></textarea>
+              </div>
+              <% } %>
+              <div class="form-input-submit">
+                <% if (status == "none") { %>
+                  <% mode = "submit" %>
+                  <button id="form-submit-btn" type="submit">Submit</button>
+                <% } else if (status == "rejected") { %>
+                  <% mode = "resubmit" %>
+                  <button id="form-submit-btn" class="btn-acnt-<%=status%>" type="submit">Re-Submit</button>
+                <% } else if (status == "accepted") { %>
+                  <button class="btn-acnt-<%=status%>" type="button">Accepted</button>
+                <% } else if (status == "pending") { %>
+                  <button class="btn-acnt-<%=status%>" type="button">Pending</button>
+                <% } %>
+              </div>
+            </form>
+          </div>
+      </div>
+    </section>
+    <section class="main-panel">
+      <div class="ti-bg-acnt tibg-tr panel-acnt-<%=status%>"></div>
+      <div class="ti-bg-acnt tibg-bl panel-acnt-<%=status%>"></div>
+      
+      <div class="main-title">
+        <h4><%= title %></h4>
+      </div>
+      <div class="main-content">
+        <md-block><%= description %></md-block>
+      </div>
+    </section>
+  </main>
+
+  <% if (status == "none" || status == "rejected") { %>
+  <script>
+    // submit task
+    
+    const formSubmit = () => {
+      return // WIP
+    }
+
+    const submitTask = (data, firstTime = true) => {
+      const url = `/task/<%=mode%>/<%=id%>`
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data)
+      }).then(res => {
+        if (res.status == 201) {
+          formSubmit()
+          window.location.reload()
+        } 
+      // else if (res.status == 200) {
+        // 	res.json().then(data => {
+      // 		if (data.message == "InvalidURL") {
+      // 			formSubmit("InvalidURL")
+      // 		} else if (data.message == "Passwords Not Matched") {
+        // 			formSubmit("PasswordsNotMatched")
+      // 		}
+      // })
+      // }
+      })
+    }
+    
+    document.querySelector("#submit-form").addEventListener("submit", (e) => {
+      e.preventDefault()
+      const data = Object.fromEntries(new FormData(e.target).entries())
+      submitTask(data)
+    })
+    
+  </script>
+  <% } %>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+@import "./main";
+
+.main {
+    padding: 6em 6em 0 6em;
+    min-height: 88vh;
+}
+.leaderboard {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+
+    .thead {
+        display: flex;
+        flex-direction: row;
+        background-color: $col-ti-bg;
+        color: $col-light;
+        padding: 1.5em 2.5em;
+        border-radius: 16px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: calc(100% - 5em);
+        margin: .8em auto;
+        
+        tbody {
+            color: $col-light;
+
+            tr {
+                border-bottom: 1px solid $col-sb-placeholder;
+            }
+
+            th, td {
+                padding: .8em 0;
+            }
+        }
+    }
+
+    .tfield-rank {
+        text-align: left;
+        width: 10%;
+    }
+    .tfield-name {
+        text-align: left;
+        width: 30%;
+    }
+    .tfield-grade {
+        text-align: center;
+        width: 20%;
+    }
+    .tfield-tasks {
+        text-align: left;
+        width: 20%;
+    }
+    .tfield-points {
+        text-align: right;
+        width: 20%;
+    }
+
+}
+
+@media screen and (max-width: 1024px) {
+    .main {
+        padding: 6em 2em 0 2em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main {
+        padding: 4em 0 0 0;
+        overflow-x: auto;
+        font-size: .9em;
+
+        .leaderboard {
+            width: 40em;
+
+            .thead {
+                padding: 1.5em 2em;
+            }
+
+            table {
+                width: calc(100% - 4em);
+            }
+        }
+    }
+}

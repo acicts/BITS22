@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BITS '22 | Login</title>
+        <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	<link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+	<%- include("partials/nav", {active: "", user: username}) %>
+
+	<main class="main">
+		<section class="form">
+			<form id="login-form" name="login">
+				<div class="form-title">
+					<h4>Login for BITS '22</h4>
+				</div>
+				<div class="form-input-err">
+					<p id="form-err">Oh look, you just found a bug :/</p>
+				</div>
+				<div class="form-input-field">
+					<input name="email" type="text" placeholder="example@email.com" required>
+					<label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
+				</div>
+				<div class="form-input-field">
+					<label for="password"><i class="fa-solid fa-asterisk"></i> Password</label>
+					<input name="password" type="password" placeholder="Password" required>
+				</div>
+				<div class="form-input-submit">
+					<button id="form-submit-btn" type="submit">Login</button>
+				</div>
+				<div class="form-links">
+					<a href="/signup">New to BITS? <span>Register</span></a>
+					<a href="/forgetpass">Forgot password? <span>Reset</span></a>
+				</div>
+			</form>
+		</section>
+
+		<%- include("partials/form_compinfo") %>
+	</main>
+
+	<script>
+		// form submittion
+		const showError = (msg, highlighted = false) => {
+			document.querySelector("#form-err").textContent = msg
+			document.querySelector(".form-input-err").classList.add("form-err-show")
+			if (highlighted) {
+				document.querySelector(`input[name=${highlighted}]`).classList.add("input-invalid")
+			}
+		}
+
+		const formSubmit = (status = "") => {
+			document.querySelectorAll("input").forEach((el) => {
+				el.classList.remove("input-invalid")
+			})
+			document.querySelector(".form-input-err").classList.remove("form-err-show")
+
+			if (status == "passwordIncorrect") {
+				showError("Incorrect Password", "password")
+			} else if (status == "emailUnregistered") {
+				showError("Email is not registered", "email")
+			}
+		}
+
+		const login = (data) => {
+			fetch("/login", {
+				method: "POST",
+				headers: {
+					"content-type": "application/json",
+				},
+				body: JSON.stringify(data)
+			}).then((res) => {
+				if (res.status == 200) {
+					formSubmit()
+					window.location.href = "/tasks"
+				}
+				else if (res.status == 401) {
+					res.json().then((data) => {
+						if (data.message == "password incorrect") {
+							formSubmit("passwordIncorrect")
+						} else if (data.message == "email unregistered") {
+							formSubmit("emailUnregistered")
+						}
+					})
+				}
+				else {
+					console.log("Error has occured :( [Invalid response from the server]")
+				}
+			})
+		}
+
+		document.querySelector("#login-form").addEventListener("submit", (e) => {
+			e.preventDefault()
+			const data = Object.fromEntries(new FormData(e.target).entries())
+			login(data)
+		})
+	</script>
+</body>
+</html>

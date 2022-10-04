@@ -1,0 +1,236 @@
+@import "./main";
+
+.main {
+    padding: 4em 4em 0 6em;
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+
+    .section-header {
+        margin-bottom: 2em;
+        
+        h2 {
+            font-size: 2em;
+            color: $col-light;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: $col-ti-desc;
+        }
+    }
+
+    .sg-content {
+        display: flex;
+        flex-direction: row;
+        gap: 5em;
+
+        .sg-card {
+            background-color: $col-ti-bg;
+            border-radius: 26px;
+            transition: .15s;
+            color: $col-ti-desc;
+            cursor: pointer;
+            
+            a {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1em;
+                width: 12em;
+                height: 12em;
+                padding: 1.5em;
+            }
+
+            .sg-card-icon {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 1.5em;
+                
+                i {
+                    font-size: 3.6em;
+                }
+            }
+
+            .sg-card-title {
+                p {
+                    font-size: 1em;
+                }
+            }
+
+            &:hover {
+                transform: scale(1.05);
+                color: $col-light;
+            }
+
+            &:active {
+                transform: scale(.95);
+            }
+
+
+        }
+    }
+
+    .oc-members, .dev-members {
+        .oc-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            gap: 3em;
+            flex-wrap: wrap;
+
+            .oc-card {
+                flex: 1 0 30%;
+                max-width: calc((100%  - 6em)/3);
+                padding: 1.5em;
+                border-radius: 26px;
+                background-color: $col-ti-bg;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2em;
+                transition: .15s;
+                cursor: pointer;
+
+                .occ-info {
+                    width: 100%;
+
+                    h4 {
+                        color: $col-light;
+                        font-size: 1.1em;
+                    }
+                    
+                    p {
+                        color: $col-ti-desc;
+                        font-size: .9em;
+                    }
+                }
+
+                .occ-contact {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    gap: 1em;
+                    
+                    .occ-button {
+                        background-color: $col-ti-tag;
+                        color: $col-ti-desc;
+                        font-size: 1em;
+                        font-weight: bold;
+                        border-radius: 12px;
+                        transition: .1s;
+                        cursor: pointer;
+                        
+                        a {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            padding: .8em 1.5em;
+                            gap: .5em;
+                        }
+
+                        &:hover {
+                            transform: scale(1.05);
+                        }
+
+                        &:active {
+                            transform: scale(.95);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .info {
+        .gl-content {
+            // margin-left: .5em;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            
+            .gl-line {
+                h4 {
+                    color: $col-light;
+                    font-size: 1.4em;
+
+                    i {
+                        margin-right: .5em;
+                    }
+                }
+                p {
+                    color: $col-ti-desc;
+                    font-size: 1em;
+                    margin-left: 2em;
+                }
+            }
+            
+        }
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .main {
+        .oc-members, .dev-members {
+            .oc-content {
+                .oc-card {
+                    flex: 1 0 48%;
+                    max-width: calc((100%  - 3em)/2);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .main {
+        .oc-members, .dev-members {
+            .oc-content {
+                .oc-card {
+                    flex: 1 0 98%;
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main {
+        padding: 4em 2em 0 2em;
+
+        .sg-content {
+            justify-content: space-between;
+        }
+        
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .main {
+        .sg-content {
+            flex-direction: column;
+            gap: 2em;
+            justify-content: space-between;
+
+            .sg-card a {
+                margin: auto;
+            }
+        }
+
+        .oc-members, .dev-members {
+            .oc-content {
+                .oc-card {
+                    .occ-contact {
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+    }
+}

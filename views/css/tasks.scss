@@ -1,0 +1,357 @@
+@import "./main";
+
+@mixin panel {
+    background-color: $col-ti-bg;
+    border-radius: 26px;
+    position: relative;
+    overflow: hidden;
+
+    .ti-bg-acnt {
+        position: absolute;
+        width: 0;
+        height: 0;
+        $ti-bg-acnt-box-shadow: 0 0 300px 60px;
+        box-shadow: $ti-bg-acnt-box-shadow $col-acnt-mid;
+
+        &.panel-acnt-accepted {
+            box-shadow: $ti-bg-acnt-box-shadow $col-green-dark;
+        }
+        &.panel-acnt-pending {
+            box-shadow: $ti-bg-acnt-box-shadow $col-yellow-dark;
+        }
+        &.panel-acnt-rejected {
+            box-shadow: $ti-bg-acnt-box-shadow $col-red-dark;
+        }
+    }
+
+    .tibg-tr {
+        top: 0;
+        right: 5em;
+    }
+
+    .tibg-bl {
+        bottom: 0;
+        left: 5em;
+    }
+}
+
+$panel-gap: 1.5em;
+
+.main {
+    display: flex;
+    flex-direction: row;
+    gap: $panel-gap;
+    padding: 1em 6em 2em 6em;
+    height: 88vh;
+
+    .side-panel {
+        width: min-content;
+        min-width: 21em;
+        display: flex;
+        flex-direction: column;
+        gap: $panel-gap;
+        
+        .button-menu {
+            display: flex;
+            flex-direction: row;
+            gap: $panel-gap;
+            
+            .bm-btn {
+                @include panel();
+                color: $col-light;
+                display: inline-block;
+                font-size: .9em;
+                font-weight: bold;
+                // box-shadow: 10px 0 80px 2px $col-acnt-dark, -10px 0 80px 2px $col-acnt-light;
+                transition: .15s;
+                user-select: none;
+                cursor: pointer;
+
+                a {
+                    display: block;
+                    padding: 1.4em 1.8em;
+
+                    i {
+                        margin-right: .6em;
+                    }
+                }
+
+                &:hover {
+                    transform: scale(1.1);
+                    color: $col-mid;
+                }
+
+                &:active {
+                    transform: scale(.9);
+                }
+
+                &.help-btn {
+                    display: flex;
+                    justify-content: center;
+                    flex: 1;
+                }
+            }
+        }
+        
+        .upload-menu {
+            @include panel();
+            flex-grow: 1;
+            padding: 1.5em;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5em;
+
+            .um-header {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                font-size: 1.2em;
+                font-weight: bold;
+                color: $col-light;
+                padding: 0 .2em;
+
+                i {
+                    margin-right: 1em;
+                }
+
+                .um-header-cat {
+                    flex-grow: 1;
+                }
+            }
+
+            .um-info {
+                flex-grow: 1;
+                color: $col-ti-desc;
+                font-size: .9em;
+                padding: 0 .4em;
+                overflow-y: auto;
+
+                &::-webkit-scrollbar {
+                    position: absolute;
+                    width: 6px;
+                }
+                
+                &::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+                
+                &::-webkit-scrollbar-thumb {
+                    background: $col-sb-placeholder;
+                    border-radius: 100px;
+                }
+    
+                &::-webkit-scrollbar-thumb:hover {
+                    background: $col-ti-desc;
+                }
+
+                a {
+                    color: $col-light;
+                    text-decoration: underline;
+                    font-weight: bold;
+                    transition: .1s;
+
+                    &:hover {
+                        color: $col-ti-desc;
+                    }
+                    
+                    &:active {
+                        color: $col-sb-placeholder;
+                    }
+                }
+            }
+
+            .um-form form {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 1.2em;
+            
+                .form-input-err {
+                    background-color: #fc282823;
+                    color: #ce4747;
+                    text-align: center;
+                    padding: .2em 1em;
+                    border-radius: 8px;
+                    // border: 2px solid #ce4747;
+                    width: max-content;
+                    margin: 0 auto;
+                    display: none;
+            
+                    &.form-err-show {
+                        display: block;
+                    }
+                }
+                
+                
+                .form-input-field {
+                    position: relative;
+                    font-size: 1em;
+                    width: 100%;
+            
+                    label {
+                        position: absolute;
+                        transform: translateY(-50%);
+                        top: 0;
+                        left: 1em;
+                        color: $col-light;
+                        font-size: .8em;
+                    }
+            
+                    input, textarea {
+                        width: 100%;
+                        font-size: .9em;
+                        color: $col-ti-desc;
+                        padding: .8em 1.5em;
+                        border-radius: 8px;
+                        background-color: $col-ti-tag;
+                        border: none;
+                        outline: none;
+            
+                        &::placeholder {
+                            font-style: italic;
+                            color: $col-sb-placeholder;
+                        }
+            
+                        &:focus {
+                            padding-bottom: calc(.8em - 2px);
+                            border-bottom: 2px solid $col-acnt-light;
+                        }
+                        
+                        &.input-invalid {
+                            padding-bottom: calc(.8em - 2px);
+                            border-bottom: 2px solid $col-red-light;
+                        }
+                    }
+            
+                    textarea {
+                        resize: none;
+                        height: 9.1em;
+                        overflow-y: overlay;
+            
+                        &::-webkit-scrollbar {
+                            position: absolute;
+                            width: 1.5em;
+                        }
+                        
+                        &::-webkit-scrollbar-track {
+                            background: transparent;
+                        }
+                        
+                        &::-webkit-scrollbar-thumb {
+                            background: $col-sb-placeholder;
+                            border: 8px solid $col-ti-tag;
+                            border-radius: 100px;
+                        }
+            
+                        &::-webkit-scrollbar-thumb:hover {
+                            background: $col-ti-desc;
+                        }
+                    }
+                }
+            
+                .form-input-submit button {
+                    background: linear-gradient(110deg, $col-acnt-light 0%, $col-acnt-dark 100%);
+                    color: $col-light;
+                    width: 100%;
+                    padding: .7em 1.5em;
+                    border: none;
+                    outline: none;
+                    border-radius: 8px;
+                    font-size: .9em;
+                    font-weight: bold;
+                    // box-shadow: 10px 0 80px 2px $col-acnt-dark, -10px 0 80px 2px $col-acnt-light;
+                    transition: .15s;
+                    user-select: none;
+                    cursor: pointer;
+            
+                    &.btn-acnt-accepted {
+                        background: linear-gradient(110deg, $gradient-green);
+                    }
+    
+                    &.btn-acnt-pending {
+                        background: linear-gradient(110deg, $gradient-yellow);
+                    }
+
+                    &.btn-acnt-rejected {
+                        background: linear-gradient(110deg, $gradient-red);
+                    }
+
+                    &:hover {
+                        transform: scale(1.05);
+                        // box-shadow: 10px 2px 80px 0px $col-acnt-dark, -10px 2px 80px 0px $col-acnt-light;
+                    }
+            
+                    &:active {
+                        transform: scale(.95);
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    .main-panel {
+        @include panel();
+        width: auto;
+        padding: 1.5em 2em;
+
+        .main-title {
+            color: $col-light;
+            font-size: 1.5em;
+            margin-bottom: .5em;
+        }
+
+        .main-content {
+            color: $col-ti-desc;
+            font-size: .9em;
+
+            a {
+                color: $col-acnt-light;
+                text-decoration: underline;
+            }
+
+            ul {
+                margin-left: 1.5em;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .main {
+        padding: 2em;
+        flex-wrap: wrap;
+        .side-panel {
+            width: 100%;
+
+            .button-menu .bm-btn.help-btn {
+                flex: inherit;
+            }
+
+            .upload-menu .um-info {
+                margin-bottom: 1em;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .main {
+        .side-panel {
+            min-width: initial;
+            .button-menu .bm-btn {
+                flex: 1;
+                text-align: center;
+                font-size: .8em;
+
+                a {
+                    padding: 1.6em 1em;
+                }
+
+                &.help-btn {
+                    flex: 1;
+                }
+            }
+        }
+    }
+}

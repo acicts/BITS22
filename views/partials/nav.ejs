@@ -1,0 +1,54 @@
+<nav class="nav">
+    <div class="nav-logo">
+      <img src="/img/bits-logo.png">
+    </div>
+
+    <div class="nav-burger-toggle">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <div class="nav-links">
+      <a href="/">
+        <div class="nav-link <%= active == 'home' ? 'nav-active' : '' %>" ><span>Home</span></div>
+      </a> <a href="/tasks">
+        <div class="nav-link <%= active == 'task' ? 'nav-active' : '' %>" ><span>Tasks</span></div>
+      </a> <a href="/onlinetest">
+        <div class="nav-link <%= active == 'test' ? 'nav-active' : '' %>" ><span>Online Test</span></div>
+      </a> <a href="/leaderboard">
+        <div class="nav-link <%= active == 'lead' ? 'nav-active' : '' %>" ><span>Leaderboard</span></div>
+      </a> <a href="/help">
+        <div class="nav-link <%= active == 'help' ? 'nav-active' : '' %>" ><span>Help</span></div>
+      </a>
+      <% if (!user[0]) { %>
+      <a href="/login">
+        <div class="nav-link" ><span>Login</span></div>
+      </a>
+      <% } %>
+    </div>
+
+    <% if (user[0]) { %>
+    <div class="nav-profile">
+      <div class="nav-profile-icon">
+        <p><%= user[0][0].toUpperCase() %></p>
+      </div>
+      <div class="nav-profile-popup nav-popup-hidden">
+        <div class="nav-profile-btn"><a href="/profile">Profile</a></div>
+        <div class="nav-profile-btn"><a href="/logout">Sign Out</a></div>
+      </div>
+    </div>
+    <% } %>
+    </nav>
+
+  <% if (user[0]) { %>
+  <script>
+    document.querySelector(".nav-profile-icon").addEventListener("click", (e) => {
+      document.querySelector(".nav-profile-popup").classList.toggle("nav-popup-hidden")
+    })
+  </script>
+  <% } %>
+
+  <script>
+    document.querySelector(".nav-burger-toggle").addEventListener("click", (e) => {
+      document.querySelector(".nav-links").classList.toggle("nav-links-toggled")
+    })
+  </script>

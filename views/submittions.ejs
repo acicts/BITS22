@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to BITS'22</title>
+    <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/form.css">
+  </head>
+  <body>
+    <center><h1>Welcome MasterMind, Ready to give points?</h1></center><br>
+    <center><div class="row row-cols-1 row-cols-md-3 g-4">
+      <% quizArray.forEach(function(data) { %>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+            <h5 class="card-title"><%= data.quiz_name %></h5>
+            <p class="card-text">USER ID: <%= data.user_id %></p>
+            <p class="card-text">SUBMITTED By: <%= data.username %></p>
+              <button type="button" class="btn btn-primary" id="btn-id2-<%= data.id %>" onclick="clickEventHandler2(event)">Add Points</button><br>
+              <div class="popup" id="popup-id2-<%= data.id %>" style="display: none;">
+                <form action="/admin/test/points/<%= data.quiz_id %>/<%= data.user_id %>" method="POST"><br>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Points for this user</label>
+                    <input type="number" class="form-control" name="points" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">Please type how many points you want to give to this user</div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="button" class="btn cancel" id="btn-id2-<%= data.id %>" onclick="closeEventHandler2(event)">Close</button>
+                </form>
+              </div><br>
+          </div>
+          </div>
+      <% }) %>
+      </center>
+    </div>
+    <script>
+
+      const clickEventHandler = (event) => {
+        const id = "popup-id-"+event.target.id.split('-')[2];
+        document.getElementById(id).style.display="block"
+      }
+
+      const closeEventHandler = (event) => {
+        const id = "popup-id-"+event.target.id.split('-')[2];
+        document.getElementById(id).style.display="none"
+      }
+
+      const clickEventHandler2 = (event) => {
+        const id = "popup-id2-"+event.target.id.split('-')[2];
+        document.getElementById(id).style.display="block"
+      }
+
+      const closeEventHandler2 = (event) => {
+        const id = "popup-id2-"+event.target.id.split('-')[2];
+        document.getElementById(id).style.display="none"
+      }
+
+      const clickEventHandler3 = (event) => {
+        const id = "popup-id3-"+event.target.id.split('-')[2];
+        document.getElementById(id).style.display="block"
+      }
+
+      const closeEventHandler3 = (event) => {
+        const id = "popup-id3-"+event.target.id.split('-')[2];
+        document.getElementById(id).style.display="none"
+      }
+
+      </script>
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>

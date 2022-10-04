@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to BITS'22</title>
+    <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/form.css">
+  </head>
+  <body>
+    <center><h1>Welcome Designer, Make design that inspire world!</h1></center><br>
+    <center><div class="row row-cols-1 row-cols-md-3 g-4">
+      <% designTasksArray.forEach(function(data) { %>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+            <h5 class="card-title"><%= data.task_title %></h5>
+            <p class="card-text"><%= data.task_description %></p>
+            <p class="card-text">SUBMITTED By: <%= data.username %></p>
+            <button type="button" class="btn btn-warning" id="btn-id-<%= data.id %>" onclick="clickEventHandler(event)">View Project Materials</button><br>
+            <br><div id="popup-id-<%= data.id %>" class="pop-up" style="display: none;">
+              <div class="card">
+                <div class="card-body">
+                  Material URL - <b><%= data.project_url %></b><br>
+                  Extra Information - <b><%= data.feedback %></b><br>
+                  <button type="button" class="btn cancel" id="btn-id-<%= data.id %>" onclick="closeEventHandler(event)">Close</button>
+                </div>
+              </div>
+            </div><br>
+              <button type="button" class="btn btn-primary" id="btn-id2-<%= data.id %>" onclick="clickEventHandler2(event)">Approve Task</button><br>
+              <div class="popup" id="popup-id2-<%= data.id %>" style="display: none;">
+                <form action="/admin/task/approve/<%= data.task_id %>/<%= data.userid %>" method="POST"><br>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Points for the task</label>
+                    <input type="number" class="form-control" name="points" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">Please type how many points you want to give to this task</div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="button" class="btn cancel" id="btn-id2-<%= data.id %>" onclick="closeEventHandler2(event)">Close</button>
+                </form>
+              </div><br>
+              <button type="button" class="btn btn-danger" id="btn-id3-<%= data.id %>" onclick="clickEventHandler3(event)">Decline Task</button>
+            <div class="popup" id="popup-id3-<%= data.id %>" style="display: none;">
+              <form action="/admin/task/decline/<%= data.task_id %>/<%= data.userid %>" method="POST"><br>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Reason for Denial</label>
+                  <input type="text" class="form-control" name="denialreason" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <div id="emailHelp" class="form-text">Please type your reason for the task denial</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn cancel" id="btn-id3-<%= data.id %>" onclick="closeEventHandler3(event)">Close</button>
+              </form>
+            </div>
+            </div>
+          </div>
+          </div>
+      <% }) %>
+      </center>
+    </div>
+    <script>
+
+      const clickEventHandler = (event) => {
+        const id = "popup-id-"+event.target.id.split('-')[2];
+        document.getElementById(id).style.display="block"
+      }
+
+      const closeEventHandler = (event) => {
+        const id = "popup-id-"+event.target.id.split('-')[2];
+        document.getElementById(id).style.display="none"
+      }
+
+      const clickEventHandler2 = (event) => {
+        const id = "popup-id2-"+event.target.id.split('-')[2];
+        document.getElementById(id).style.display="block"
+      }
+
+      const closeEventHandler2 = (event) => {
+        const id = "popup-id2-"+event.target.id.split('-')[2];
+        document.getElementById(id).style.display="none"
+      }
+
+      const clickEventHandler3 = (event) => {
+        const id = "popup-id3-"+event.target.id.split('-')[2];
+        document.getElementById(id).style.display="block"
+      }
+
+      const closeEventHandler3 = (event) => {
+        const id = "popup-id3-"+event.target.id.split('-')[2];
+        document.getElementById(id).style.display="none"
+      }
+
+      </script>
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>

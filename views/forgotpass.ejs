@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BITS '22 | Reset Password</title>
+        <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	<link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+	<%- include("partials/nav", {active: "", user: username}) %>
+
+	<main class="main">
+		<section class="form">
+			<form id="forgetpass-form" name="forgetpass" action="/pass/forget" method="POST">
+				<div class="form-title">
+					<h4>Change Password</h4>
+				</div>
+				<div class="form-input-err">
+					<p id="form-err">Oh look, you just found a bug :/</p>
+				</div>
+                                <input name="user" type="hidden" value="<%= UserData.unique_id %>" >
+                                <input name="link" type="hidden" value="<%= link %>" >
+				<div class="form-input-field">
+					<input name="password" type="text" placeholder="Your Password" required>
+					<label for="password"><i class="fa-solid fa-asterisk"></i> New Password</label>
+				</div>
+				<div class="form-input-submit">
+					<button id="form-submit-btn" type="submit">Change Password</button>
+				</div>
+			</form>
+		</section>
+
+		<%- include("partials/form_compinfo") %>
+	</main>
+</body>
+</html>

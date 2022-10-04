@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BITS '22 | Help</title>
+
+    <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="/css/help.css" rel="stylesheet">
+</head>
+<body>
+    <%- include("partials/nav", {active: "help", user: username}) %>
+
+    <main class="main">
+        <section class="support-groups">
+            <header class="sg-title section-header">
+                <h2>New to BITS?</h2>
+                <p>Join our support groups for announcements and support!</p>
+            </header>
+            <div class="sg-content">
+                <div class="sg-card">
+                    <a href="https://chat.whatsapp.com/KoMRnloMYitCcEodEbKklB" target="_blank">
+                        <div class="sg-card-icon">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div class="sg-card-title">
+                            <p>Whatsapp</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="sg-card">
+                    <a href="https://discord.gg/RTRKCpKpAq" target="_blank">    
+                        <div class="sg-card-icon">
+                            <i class="fa-brands fa-discord"></i>
+                        </div>
+                        <div class="sg-card-title">
+                            <p>Discord</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- <section class="oc-members">
+            <header class="oc-title section-header">
+                <h2>Meet our Organising Commitee</h2>
+            </header>
+            <div class="oc-content">
+
+                <%- include("partials/member_card.ejs", {name: "Pasindu Ranasinghe", desc: "Back-end Developer & Logic Tester", socials: [{name: "Whatsapp", url: "https://wa.me/94776976673", icon: "fa-brands fa-whatsapp"}] }) %>
+
+                <%- include("partials/member_card.ejs", {name: "Minuka Gunawansa", desc: "Front-end Designer & Developer", socials: [{name: "Whatsapp", url: "https://wa.me/94777075625", icon: "fa-brands fa-whatsapp"}] }) %>
+                
+                <%- include("partials/member_card.ejs", {name: "Bihandu De Silva", desc: "Coding Tasks Designer", socials: [{name: "Whatsapp", url: "https://wa.me/94716071187", icon: "fa-brands fa-whatsapp"}] }) %>
+                
+                <%- include("partials/member_card.ejs", {name: "Anupama Dissanayake", desc: "Coding Tasks Designer", socials: [{name: "Whatsapp", url: "https://wa.me/94703319988", icon: "fa-brands fa-whatsapp"}] }) %>
+                
+                <%- include("partials/member_card.ejs", {name: "Ovin Perera", desc: "Posters & Trailer Visual Concept Designer", socials: [{name: "Whatsapp", url: "https://wa.me/94756691227", icon: "fa-brands fa-whatsapp"}] }) %>
+
+                <%- include("partials/member_card.ejs", {name: "Janiru Wijekoon", desc: "Captions & Site Description Writer", socials: [{name: "Whatsapp", url: "https://wa.me/94718189436", icon: "fa-brands fa-whatsapp"}] }) %>
+                
+                <%- include("partials/member_card.ejs", {name: "Kavindu Maleesha", desc: "Captions Writer", socials: [{name: "Whatsapp", url: "https://wa.me/94779263248", icon: "fa-brands fa-whatsapp"}] }) %>
+
+            </div>
+        </section> -->
+        
+       <section class="oc-members">
+            <header class="oc-title section-header">
+                <h2>Contact Us</h2>
+            </header>
+            <div class="oc-content">
+
+                <%- include("partials/member_card.ejs", {name: "Pasindu Ranasinghe", desc: "Organizing Team", socials: [{name: "Whatsapp", url: "https://wa.me/94776976673", icon: "fa-brands fa-whatsapp"}] }) %>
+
+                <%- include("partials/member_card.ejs", {name: "Harshana Gunawansa", desc: "Organizing Team", socials: [{name: "Whatsapp", url: "https://wa.me/94777075625", icon: "fa-brands fa-whatsapp"}] }) %>
+
+                <%- include("partials/member_card.ejs", {name: "Chamindu Amarasinghe", desc: "Organizing Team", socials: [{name: "Whatsapp", url: "https://wa.me/94711436311", icon: "fa-brands fa-whatsapp"}] }) %>
+                
+                <%- include("partials/member_card.ejs", {name: "Manula Thejan", desc: "Organizing Team", socials: [{name: "Whatsapp", url: "https://wa.me/94779761567", icon: "fa-brands fa-whatsapp"}] }) %>
+                
+            </div>
+        </section>
+
+        <section class="dev-members">
+            <header class="oc-title section-header">
+                <h2>Meet our Developers of BITS '22 site</h2>
+            </header>
+            <div class="oc-content">
+                <%- include("partials/member_card.ejs", {name: "Pasindu Dushan", desc: "Back-end Developer", socials: [{name: "Whatsapp", url: "https://wa.me/94776976673", icon: "fa-brands fa-whatsapp"}, {name: "Github", url: "https://github.com/PasinduDushan", icon: "fa-brands fa-github"}] }) %>
+
+                <%- include("partials/member_card.ejs", {name: "Harshana Gunawansa", desc: "Front-end Designer & Developer", socials: [{name: "Whatsapp", url: "https://wa.me/94777075625", icon: "fa-brands fa-whatsapp"}, {name: "Github", url: "https://github.com/minukag", icon: "fa-brands fa-github"}] }) %>
+            </div>
+        </section>
+
+        <!-- <section id="guidlines" class="guidlines info">
+            <header class="gl-title section-header">
+                <h2>Project submission guidlines</h2>
+            </header>
+            <div class="gl-content">
+                <%- include("partials/help_info_article.ejs", {title: "Do NOT Plagarize", desc: "Plagarization includes content from others, youtube tutorials and downloadable content, unless explicitly permitted in the task", icon: "xmark"})%>
+
+                <%- include("partials/help_info_article", {title: "Make sure your project files are viewable", desc: 'Your project files needs to be viewable by the admins. Make sure your project files are uploaded to somewhere as Google Drive and is viewable by "anyone with a link"', icon: "xmark"})%>
+            </div>
+        </section> -->
+        
+        <!-- <section id="faq" class="faq info">
+            <header class="gl-title section-header">
+                <h2>Frequently Asked Questions</h2>
+            </header>
+            <div class="gl-content">
+                <%- include("partials/help_info_article.ejs", {title: "What is BITS?", desc: "BITS is a task-based competition. Learn more in the home page", icon: "question"})%>
+
+                <%- include("partials/help_info_article.ejs", {title: "What is coding?", desc: "Coding is the act of coding a code", icon: "question"})%>
+            </div>
+        </section> -->
+    </main>
+
+    <%- include("partials/footer", { active: "help" }) %>
+</body>
+</html>

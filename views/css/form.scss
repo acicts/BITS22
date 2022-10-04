@@ -1,0 +1,223 @@
+@import "./main";
+
+.main {
+    display: flex;
+    flex-direction: row;
+    min-height: 88vh;
+}
+
+.form {
+    padding: 0 6em;
+    display: flex;
+    align-items: center;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        background-color: $col-ti-bg;
+        width: 30em;
+        padding: 2em 3em;
+        border-radius: 28px;
+        gap: 1.5em;
+
+        .form-title {
+            width: 100%;
+            color: $col-light;
+            text-align: center;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+
+        .form-input-err {
+            background-color: #fc282823;
+            color: #ce4747;
+            text-align: center;
+            padding: .2em 1em;
+            border-radius: 8px;
+            // border: 2px solid #ce4747;
+            width: max-content;
+            margin: 0 auto;
+            display: none;
+
+            &.form-err-show {
+                display: block;
+            }
+        }
+
+        .form-input-field-group {
+            display: flex;
+            flex-direction: row;
+            gap: 1em;
+        }
+
+        .form-input-field {
+            position: relative;
+            font-size: 1em;
+            width: 100%;
+
+            label {
+                position: absolute;
+                transform: translateY(-50%);
+                top: 0;
+                left: 1em;
+                color: $col-light;
+                font-size: .8em;
+            }
+
+            input, select {
+                width: 100%;
+                font-size: .9em;
+                color: $col-ti-desc;
+                padding: .8em 1.5em;
+                border-radius: 8px;
+                background-color: $col-ti-tag;
+                border: none;
+                outline: none;
+
+                &::placeholder {
+                    font-style: italic;
+                    color: $col-sb-placeholder;
+                }
+
+                &:focus {
+                    padding-bottom: calc(.8em - 2px);
+                    border-bottom: 2px solid $col-acnt-light;
+                }
+                
+                &.input-invalid {
+                    padding-bottom: calc(.8em - 2px);
+                    border-bottom: 2px solid $col-red-light;
+                }
+            }
+
+            select {
+                cursor: pointer;
+            }
+        }
+
+        .form-input-submit button {
+            background: linear-gradient(110deg, $col-acnt-light 0%, $col-acnt-dark 100%);
+            color: $col-light;
+            width: 100%;
+            padding: .7em 1.5em;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            // box-shadow: 10px 0 80px 2px $col-acnt-dark, -10px 0 80px 2px $col-acnt-light;
+            transition: .15s;
+            user-select: none;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.05);
+                // box-shadow: 10px 2px 80px 0px $col-acnt-dark, -10px 2px 80px 0px $col-acnt-light;
+            }
+
+            &:active {
+                transform: scale(.95);
+            }
+        }
+
+        .form-links {
+            display: flex;
+            flex-direction: column;
+            color: $col-light;
+            text-align: center;
+            font-size: .9em;
+            gap: .5em;
+            transition: .15s;
+
+            span {
+                color: $col-acnt-light;
+            }
+
+            a {
+                transition: inherit;
+            }
+            
+            a:hover {
+                transform: scale(1.1);
+            }
+            
+            a:active {
+                transform: scale(.9);
+            }
+        }
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    .info-title {
+        font-size: 5em;
+        font-weight: bold;
+        color: $col-light;
+
+        span {
+            @include gradientText($col-acnt-light, $col-acnt-dark, 100px);
+        }
+    }
+
+    .info-desc {
+        margin: 1em 0; 
+        font-size: 1.1em;
+        text-align: center;
+        width: 40vw;
+        color: $col-mid;
+        font-style: italic;
+    }
+
+    .info-mascot {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // margin: 1em 0;
+        img {
+            height: 40vh;
+            width: auto;
+        }
+    }
+
+    .info-quote {
+        margin: 3em 0 1em 0;
+        font-size: 1em;
+        font-style: italic;
+        color: $col-mid;
+        
+        span {
+            color: $col-acnt-dark;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .info {
+        display: none;
+    }
+
+    .main {
+        .form {
+            margin: auto;
+            padding: 0 2em;
+        }
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .main {
+        .form {
+            width: 100%;
+            font-size: .9em;
+
+            form {
+                padding: 2em;
+            }
+        }
+    }
+}

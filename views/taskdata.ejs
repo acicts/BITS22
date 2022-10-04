@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BITS '22 | Tasks</title>
+    <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="/css/taskdata.css" rel="stylesheet">
+  </head>
+  <body>
+    <%- include('partials/nav', {active: "task", user: username}) %>
+
+    <main class="main">
+      <section class="task-search">
+        <div class="searchbar">
+          <div class="searchbar-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <input id="task-search" type="text" placeholder="Search Tasks">
+          <button class="task-filter-cat">
+            <p><i class="fa-solid fa-filter"></i>Filter</p>
+          </button>
+          <div class="task-filter-cat-popup tf-cat-hidden">
+            <button class="tf-cat-option tf-cat-active" data-tf-cat="CODING"><p><i class="fa-solid fa-code"></i> Code</p></button>
+            <button class="tf-cat-option tf-cat-active" data-tf-cat="DESIGN"><p><i class="fa-solid fa-pen"></i> Design</p></button>
+            <button class="tf-cat-option tf-cat-active" data-tf-cat="EXPLORE"><p><i class="fa-solid fa-magnifying-glass"></i> Explore</p></button>
+          </div>
+        </div>
+      </section>
+      <section class="tasks">
+        <div class="task-list">
+
+          <% tasks.forEach(function(data) { %>
+            <%- include("partials/taskitem", {data}) %>
+          <% }) %>
+          
+        </div>
+        <div class="task-filter">
+          <div class="tf-list">
+            <div class="tf-item tf-blue tf-active" onclick="sortByStatus('none')"><p>All Tasks</p></div>
+            <div class="tf-item tf-green" onclick="sortByStatus('accepted')"><p>Accepted Tasks</p></div>
+            <div class="tf-item tf-red" onclick="sortByStatus('rejected')"><p>Rejected Tasks</p></div>
+            <div class="tf-item tf-yellow" onclick="sortByStatus('pending')"><p>Pending Tasks</p></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <%- include("partials/footer", { active: "task" }) %>
+
+    <script>
+      // Search tasks
+
+      const check_search = (input) => {
+        document.querySelectorAll(".task-item").forEach((el) => {
+          console.log(el.getAttribute("data-task-title").indexOf(input.toLowerCase()))        
+          if (el.getAttribute("data-task-title").indexOf(input.toLowerCase()) < 0) {
+            el.classList.add("task-filtered-search")
+          } else {
+            el.classList.remove("task-filtered-search")
+          }
+        })
+      }
+
+      const search = document.querySelector("#task-search")
+      search.addEventListener("input", () => {
+        check_search(search.value)
+        console.log(search.value)
+      })
+
+
+    </script>
+
+    <script>
+      // Add tags to tasks
+
+      const add_status_tag = (id, cls, txt) => {
+        const t = document.querySelector(`[data-task-id='${id}']`)
+        if (t) {
+          t.querySelector(".ti-status").classList.add(cls)
+          t.querySelector(".ti-status-text").textContent = txt
+
+          t.setAttribute("data-task-status", txt.toLowerCase())
+        }
+      }
+
+      // ignore the error here if any, it's because JS linter doesn't recognize EJS synthax.
+      const accepted = <%= JSON.stringify(approvedArray) %>
+      const pending = <%= JSON.stringify(pendingArray) %>
+      const rejected = <%= JSON.stringify(declineArray) %>
+
+      accepted.forEach((id) => add_status_tag(id, "ts-green", "Accepted"))
+      pending.forEach((id) => add_status_tag(id, "ts-yellow", "Pending"))
+      rejected.forEach((id) => add_status_tag(id, "ts-red", "Rejected"))
+    </script>
+
+    <script>
+      // Sidebar filter
+
+      const sortByStatus = (filter) => {
+        document.querySelectorAll(".task-item").forEach(el => {
+          // if selected "All Tasks" (filter not applied), show all tasks
+          if (filter == "none") { 
+            el.classList.remove("task-filtered-status")
+          } 
+          // if filter is applied & task doesn't fit the filter, hide it
+          else if (el.getAttribute("data-task-status") != filter) {
+            el.classList.add("task-filtered-status")
+          } 
+          // if the task fits the filter, show it
+          else { 
+            el.classList.remove("task-filtered-status")
+          }
+        })
+      }
+
+      document.querySelectorAll(".tf-item").forEach((el) => {
+        el.addEventListener("click", () => {
+          document.querySelector(".tf-active").classList.remove("tf-active")
+          el.classList.add("tf-active")
+
+          check_search(search.value) // HERE
+        })
+      })
+    </script>
+
+    <script>
+      const sortByCat = (cat) => {
+        document.querySelectorAll(`[data-task-cat=${cat}]`).forEach((el) => {
+          el.classList.toggle("task-filtered-cat")
+        })
+      }
+
+      document.querySelector(".task-filter-cat").addEventListener("click", (e) => {
+        document.querySelector(".task-filter-cat-popup").classList.toggle("tf-cat-hidden")
+      })
+      
+      document.querySelectorAll(".tf-cat-option").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          el.classList.toggle("tf-cat-active")
+          sortByCat(el.getAttribute("data-tf-cat"))
+        })
+      })
+    </script>
+    
+  </body>
+</html>

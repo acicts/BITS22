@@ -1,0 +1,49 @@
+<% const icon = {"CODING": "fa-solid fa-code", "DESIGN": "fa-solid fa-pen", "EXPLORE": "fa-solid fa-magnifying-glass"} %>
+<% const cat = {"CODING": "Code", "DESIGN": "Design", "EXPLORE": "Explore"} %>	
+
+<section class="tasks-cat">
+    <div class="task-cat-header">
+        <div class="task-cat-tag task-cat-tag-<%=category%>">
+            <p><%=category%> Tasks</p>
+        </div>
+        <div class="task-cat-tag task-cat-tag-<%=category%>">
+            <p><%= arr.length %></p>
+        </div>
+    </div>
+    <div class="tasks-item-wrapper">
+        <% arr.forEach(data => { %> 
+        <div class="task-item-s" data-task-id="<%=data.task_id%>">					
+            <div class="ti-header">
+                <i class="<%=icon[data.task_category]%>"></i>
+                <p class="ti-header-cat"><%= cat[data.task_category] %></p>
+                <p class="ti-header-id"><%= data.task_id %></p>
+            </div>
+            
+            <div class="ti-title">
+                <p><%= data.task_title %></p>
+            </div>
+
+            <% if (category == "rejected") { %>
+            <div class="ti-denial">
+                <p><%=data.denial_reason%></p>
+            </div>
+            <% } %>
+            
+            <div class="ti-cta">
+                <a href="/task/<%=data.task_id%>">View task</a>
+            </div>
+        </div>
+        <% }) %>
+        <% if (arr.length < 1) { %>
+        <div class="tasks-empty">
+            <% if (category == "rejected") { %> 
+                <p>None rejected so far, good job!</p>
+            <% } else if (category == "pending") { %>
+                <p>No tasks pending for review!</p>
+            <% } else if (category == "accepted") { %>
+                <p>No tasks accepted yet, try doing some tasks!</p>
+            <% } %>
+        </div>
+        <% } %>
+    </div>
+</section>

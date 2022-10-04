@@ -1,0 +1,16 @@
+<div class="oc-card">
+    <div class="occ-info">
+        <h4><%=name%></h4>
+        <p><%=desc%></p>
+    </div>
+    <div class="occ-contact">
+        <% socials.forEach(data => { %> 
+        <div class="occ-button">
+            <a href="<%=data.url%>" target="_blank">
+                <i class="<%=data.icon%>"></i>
+                <p><%=data.name%></p>
+            </a>
+        </div>
+        <% }) %>
+    </div>
+</div>

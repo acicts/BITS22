@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BITS '22 | Register</title>
+        <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	<link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+	<%- include("partials/nav", {active: "", user: username}) %>
+	
+	<main class="main">
+		<section class="form">
+			<form id="signup-form" name="signup">
+				<input name="school" type="text" placeholder="school (HIDDEN)" value="Ananda College Colombo" hidden disabled required>
+				<input name="age" type="number" placeholder="Age (HIDDEN)" value=0 hidden disabled required>
+				<div class="form-title">
+					<h4>Register for BITS '22</h4>
+				</div>
+				<div class="form-input-err">
+					<p id="form-err">Oh look, you just found a bug :/</p>
+				</div>
+				<div class="form-input-field">
+					<input name="email" type="text" placeholder="example@email.com" required>
+					<label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
+				</div>
+				<div class="form-input-field">
+					<label for="fullname"><i class="fa-solid fa-user-large"></i> Full Name</label>
+					<input name="fullname" type="text" placeholder="Your Full Name" required>
+				</div>
+				<div class="form-input-field">
+					<label for="username"><i class="fa-solid fa-user-astronaut"></i> Display Name</label>
+					<input name="username" type="text" placeholder="Name shown in the website (nickname)" maxlength=20 required>
+				</div>
+				<div class="form-input-field-group">
+					<div class="form-input-field">
+						<label for="grade"><i class="fa-solid fa-graduation-cap"></i> Grade</label>
+						<select name="grade" required>
+							<option value="" selected disabled hidden>Select Here</option>
+							<option value="Grade 6">Grade 06</option>
+							<option value="Grade 7">Grade 07</option>
+							<option value="Grade 8">Grade 08</option>
+							<option value="Grade 9">Grade 09</option>
+							<option value="Grade 10">Grade 10</option>
+							<option value="Grade 11">Grade 11</option>
+							<option value="After O/L 1000">After O/L</option>
+						</select>
+					</div>
+					<div class="form-input-field">
+						<label for="competition"><i class="fa-solid fa-award"></i> Competition</label>
+						<select name="competition" required>
+							<option value="" selected disabled hidden>Select Here</option>
+							<option value="bitshype">BITS + HyperText</option>
+							<option value="hype">HyperText Only</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-input-field">
+					<label for="password"><i class="fa-solid fa-asterisk"></i> Password</label>
+					<input name="password" type="password" placeholder="Password" required>
+				</div>
+				<div class="form-input-field">
+					<label for="passwordConf"><i class="fa-solid fa-asterisk"></i> Confirm Password</label>
+					<input name="passwordConf" type="password" placeholder="Re-type password" required>
+				</div>
+				<div class="form-input-submit">
+					<button id="form-submit-btn" type="submit">Register</button>
+				</div>
+				<div class="form-links">
+					<a href="/login">Already registered? <span>Login</span></a>
+				</div>
+			</form>
+		</section>
+
+		<%- include("partials/form_compinfo") %>
+	</main>
+
+	<script>
+		// form submittion
+
+		const showError = (msg, highlighted = false) => {
+			document.querySelector("#form-err").textContent = msg
+			document.querySelector(".form-input-err").classList.add("form-err-show")
+			if (highlighted) {
+				document.querySelector(`input[name=${highlighted}]`).classList.add("input-invalid")
+			}
+		}
+
+		const formSubmit = (status = "") => {
+			document.querySelectorAll("input").forEach((el) => {
+				el.classList.remove("input-invalid")
+			})
+			document.querySelector(".form-input-err").classList.remove("form-err-show")
+
+			if (status == "") {
+				return
+			}
+			else if (status == "EmailAlreadyUsed") {
+				showError("Email has already been used", "email")
+			} else if (status == "PasswordsNotMatched") {
+				showError("Passwords are not matched", "passwordConf")
+			} else if (status == "CaptchaFailed") {
+				showError("Captcha Failed", false)
+			} else {
+				showError("Unknown Error", false)
+			}
+		}
+
+		const signup = (data) => {
+			fetch("/signup", {
+				method: "POST",
+				headers: {
+					"content-type": "application/json",
+				},
+				body: JSON.stringify(data)
+			}).then((res) => {
+				if (res.status == 201) {
+					formSubmit()
+					window.location.href = "/login"
+				} 
+				else if (res.status == 200) {
+					res.json().then((data) => {
+						if (data.message == "Email Already Used") {
+							formSubmit("EmailAlreadyUsed")
+						} else if (data.message == "Passwords Not Matched") {
+							formSubmit("PasswordsNotMatched")
+						}
+					})
+				}
+				else if (res.status == 400) {
+					res.json().then((data) => {
+						if (data.responseError == "Captcha Failed") {
+							formSubmit("CaptchaFailed")
+						} else if (data.responseError == "Passwords Not Matched") {
+							formSubmit("PasswordsNotMatched")
+						}
+					})
+				}
+				else {
+					console.log("Error has occured :( [Invalid response from the server]")
+				}
+			})
+		}
+
+		document.querySelector("#signup-form").addEventListener("submit", (e) => {
+			e.preventDefault()
+			const gradeToAge = {
+				"Grade 6": 11,
+				"Grade 7": 12,
+				"Grade 8": 13,
+				"Grade 9": 14,
+				"Grade 10": 15,
+				"Grade 11": 16,
+				"After O/L 1000": 17,
+			}
+			const data = Object.fromEntries(new FormData(e.target).entries())
+			data.age = gradeToAge[data.grade]
+			signup(data)
+		})
+	</script>
+
+</body>
+</html>

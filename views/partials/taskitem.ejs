@@ -1,0 +1,27 @@
+<% let icon = {"CODING": "fa-solid fa-code", "DESIGN": "fa-solid fa-pen", "EXPLORE": "fa-solid fa-magnifying-glass"} %>
+
+<div class="task-item" data-task-id="<%=data.task_id%>" data-task-cat="<%=data.task_category%>" data-task-status="none" data-task-title="<%=data.task_title.toLowerCase()%>">
+
+    <div class="ti-bg-acnt tibg-tr"></div>
+    <div class="ti-bg-acnt tibg-bl"></div>
+    
+    <div class="ti-info">
+      <h4><%= data.task_title %></h4>
+      <p><%= data.task_description %></p>
+    </div>
+    
+    <div class="ti-cta">
+      <a href="/task/<%=data.task_id%>">View task</a>
+    </div>
+
+    <div class="ti-type">
+      <div><i class="<%=icon[data.task_category]%>"></i></div>
+      <div class="tity-divider"></div>
+      <div><p><%=data.task_id%></p></div>
+    </div>
+
+    <div class="ti-status">
+      <p class="ti-status-text">N/A</p>
+    </div>
+    
+</div>

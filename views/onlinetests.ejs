@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BITS '22 | Tasks</title>
+  <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+
+  <link rel="stylesheet" href="./css/sweetalert2.min.css">
+  <script src="./js/sweetalert2.min.js"></script>
+  <script src="./js/functions.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link href="/css/onlinetests.css" rel="stylesheet">
+</head>
+
+<body>
+  <%- include('partials/nav', {active: "test" , user: username}) %>
+    <main class="main">
+      <section class="tasks">
+        <div class="task-list">
+          <br>
+          <div class="task-item">
+            <div class="ti-bg-acnt tibg-tr"></div>
+            <div class="ti-bg-acnt tibg-bl"></div>
+            <% filteredQuiz.forEach(function(data) { %>
+              <div class="ti-info">
+                <h4>
+                  <%= data.test_name %>
+                </h4>
+                <p>
+                  <%= data.test_description %>
+                </p><br>
+                <p><i class="fa-solid fa-calendar-days"></i>&nbsp;Test Date: <%= data.createdAt %>
+                </p>
+              </div>
+              <% if(data.test_enabled){ %>
+                <form action="/test/submit" method="post" onsubmit="return submitForm2(this);">
+                  <input type="hidden" id="link" name="link" value="<%= data.test_link %>" />
+                  <input type="hidden" id="name" name="name" value="<%= data.test_name %>" />
+                  <input type="hidden" id="id" name="id" value="<%= data.test_id %>" />
+                  <div class="ti-cta" style="display: flex;">
+                    <input type="submit" value="Start the Quiz" class="start-quiz-input"></input><br><br>
+                  </div>
+                </form>
+                <% } else { %>
+                  <input type="submit" value="Quiz has not started" disabled></input><br><br>
+                  <% } %>
+                    <% }) %>
+          </div>
+        </div>
+        </div>
+        </div>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"></script>
+
+    <%- include("partials/footer", { active: "test" }) %>
+</body>
+
+</html>

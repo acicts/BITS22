@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BITS '22 | Profile</title>
+        <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	<link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+	<%- include("partials/nav", {active: "", user: username}) %>
+	
+	<header class="header">
+		<div class="header-text">
+			<div class="header-welcome">
+				<h1>Welcome, <%=userData.username%></h1>
+			</div>
+			<div class="header-user">
+				<p><%=userData.fullname%></p>
+				<p>|</p>
+				<p><%=String(userData.grade).replace(/1000/g, ' ')%></p>
+			</div>
+		</div>
+		<div class="header-buttons">
+			<div class="header-btn"><a href="/logout">Sign Out</a></div>
+		</div>
+	</header>
+
+	<main class="main">
+		<%- include("partials/profile_taskcat.ejs", {"category": "pending", "arr": pendingResults}) %>
+		<%- include("partials/profile_taskcat.ejs", {"category": "accepted", "arr": approvedResults}) %>
+		<%- include("partials/profile_taskcat.ejs", {"category": "rejected", "arr": declinedResults}) %>
+	</main>
+
+	<%- include("partials/footer", { active: "profile" }) %>
+</body>
+</html>

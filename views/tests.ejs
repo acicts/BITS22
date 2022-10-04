@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+    <center><h2>All tests submitted to work</h2></center><br>
+    <center><div class="row row-cols-1 row-cols-md-3 g-4">
+        <% test_data.forEach(function(data) { %>
+            <div class="col">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= data.test_name %></h5>
+                    <p class="card-text"><%= data.test_description %></p>
+                    <p class="card-text">Category: <%= data.test_type %></p>
+                    <% if(!data.testEnabled){ %>
+                      <form action="/admin/test/enable/<%= data.test_id %>" method="post">
+                        <div class="col-md-4">
+                          <label for="validationCustom01" class="form-label">Test Link</label>
+                          <input type="url" class="form-control" name="link" id="validationCustom01" placeholder="Type the quiz link in this space" required>
+                          <div class="invalid-feedback">
+                            You must type the link for the quiz
+                          </div>
+                        </div><br>
+                        <button type="submit" class="btn btn-primary">Enable Test</button><br><br>
+                      </form>
+                      <% } else{ %>
+                      <form action="/admin/test/disable/<%= data.test_id %>" method="post">  
+                        <button type="submit" class="btn btn-primary">Disable Test</button><br><br>
+                        </form>
+                     <% } %>
+                </div>
+                </div>
+              </div>
+        <% }) %>
+    </div></center>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>

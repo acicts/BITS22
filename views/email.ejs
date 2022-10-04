@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+    <center><h3>Send Important Announcement From here</h3></center><br><br>
+    <center><form action="/admin/email/send/bits" method="post">
+        <div class="col-md-4">
+            <label for="validationCustom01" class="form-label">Email Subject</label>
+            <input type="text" class="form-control" name="subject" id="validationCustom01" placeholder="Subject of the Email" maxlength="100" required>
+            <div class="invalid-feedback">
+              You must type the subject for the email
+            </div>
+          </div><br>
+          <div class="col-md-4">
+            <label for="validationCustom01" class="form-label">Email Message</label>
+            <input type="text" class="form-control" name="message" id="validationCustom01" placeholder="Description of the email" maxlength="2000" required>
+            <div class="invalid-feedback">
+              You must type a description for the email
+            </div>
+          </div><br>
+      <button type="submit" class="btn btn-primary">Bits & Hypertext Users</button><br>
+    </form><br><br><br><br>
+    <form action="/admin/email/send/hypertext" method="post">
+        <div class="col-md-4">
+            <label for="validationCustom01" class="form-label">Email Subject</label>
+            <input type="text" class="form-control" name="subject" id="validationCustom01" placeholder="Subject of the Email" maxlength="100" required>
+            <div class="invalid-feedback">
+              You must type the subject for the email
+            </div>
+          </div><br>
+          <div class="col-md-4">
+            <label for="validationCustom01" class="form-label">Email Message</label>
+            <input type="text" class="form-control" name="message" id="validationCustom01" placeholder="Description of the email" maxlength="2000" required>
+            <div class="invalid-feedback">
+              You must type a description for the email
+            </div>
+          </div><br>
+      <button type="submit" class="btn btn-primary">Hypertext Users</button><br>
+    </form>
+</center>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>
