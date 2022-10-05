@@ -18,7 +18,8 @@ const Schema = mongoose.Schema;
     default: Date.now,
   },
   bitsUser: Boolean,
-  hypertextUser: Boolean
+  hypertextUser: Boolean,
+  admissionNo: Number
 })),
   (User = mongoose.model("User", userSchema));
 
