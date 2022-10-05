@@ -116,6 +116,7 @@ router.post("/signup", async (req, res, next) => {
               adminUser: false,
               bitsUser: bitshype,
               hypertextUser: hype,
+              admissionNo: req.body.admission,
             });
 
             let newUserTasks = new userTasks({
@@ -137,7 +138,7 @@ router.post("/signup", async (req, res, next) => {
             (async () => {
               try {
                 const { sheets } = await authentication();
-                const { fullname, email, school, grade, age } = req.body;
+                const { fullname, email, school, grade, age, admission } = req.body;
 
                 const writeReq = await sheets.spreadsheets.values.append({
                   spreadsheetId: id,
@@ -152,6 +153,7 @@ router.post("/signup", async (req, res, next) => {
                         "Ananda College",
                         grade,
                         "bits22-" + bits_id,
+                        admission,
                       ],
                     ],
                   },
