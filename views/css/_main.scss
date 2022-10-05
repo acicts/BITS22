@@ -496,3 +496,9 @@ body {
         }
     }
 }
+
+@media screen and (max-width: 400px) {
+    .footer .footer-main .footer-content .footer-logo {
+        height: 2.6em;
+    }
+}

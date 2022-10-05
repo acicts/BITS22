@@ -385,6 +385,11 @@ body::-webkit-scrollbar-thumb:hover {
     align-items: center;
   }
 }
+@media screen and (max-width: 400px) {
+  .footer .footer-main .footer-content .footer-logo {
+    height: 2.6em;
+  }
+}
 .main {
   padding: 4em 4em 0 6em;
   display: flex;
