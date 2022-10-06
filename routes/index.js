@@ -113,6 +113,35 @@ router.post("/signup", async (req, res, next) => {
     if (personInfo.password == personInfo.passwordConf) {
       User.findOne({ email: personInfo.email }, (err, data) => {
         if (!data) {
+          const datag = await Analytics.findOne({ analytics_id: 1043 });
+          if(!datag){
+           let newData = new Analytics({
+             total_views: 1,
+             total_signup: 1,
+             coding_tasks: 1,
+             design_tasks: 1,
+             explore_tasks: 1
+           })
+
+        newData.save((error, data) => {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("Successfully added records for analytics");
+          }
+        })
+      }
+
+      await Analytics.updateOne({ total_views: datag.total_views }, [
+       {
+        $set: {
+         total_signup: {
+          $add: ["$total_signup", 1],
+        }
+       }
+       }
+       ]);
+          
           let c;
           User.findOne({}, (err, data) => {
             if (data) {
