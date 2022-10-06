@@ -1,0 +1,98 @@
+@import "./main";
+
+.main {
+    height: 88vh;
+
+    .code {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 30vw;
+        font-weight: bold;
+        color: transparent;
+        -webkit-text-stroke: 8px $col-ti-bg;
+        user-select: none;
+        z-index: -1;
+    }
+
+    .bg-acnt {
+        position: absolute;
+        width: 0;
+        height: 0;
+        box-shadow: 0 0 300px 80px $col-acnt-mid;
+
+        &.bg-acnt-1 {
+            bottom: 30%;
+            left: 35%
+        }
+
+        &.bg-acnt-2 {
+            top: 30%;
+            left: 15%
+        }
+
+        &.bg-acnt-3 {
+            top: 45%;
+            right: 20%
+        }
+    }
+
+    .msg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: max-content;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        align-items: center;
+        
+        .msg-text {
+            font-size: 2em;
+            color: $col-light;
+            font-weight: bold;
+        }
+        
+        .msg-btn {
+            font-size: 1.1em;
+            color: $col-ti-desc;
+            transition: .15s;
+
+            &:hover {
+                transform: scale(1.1);
+                font-weight: bold;
+            }
+
+            &:active {
+                transform: scale(.9);
+            }
+
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .main .code {
+        font-size: 40vw;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .main .code {
+        font-size: 30vh;
+        writing-mode: vertical-rl;
+    }
+
+    .main .msg {
+        .msg-text {
+            font-size: 1.5em;
+        }
+
+        .msg-btn {
+            font-size: 1em;
+        }
+    }
+} 
