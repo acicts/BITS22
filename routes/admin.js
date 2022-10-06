@@ -79,6 +79,25 @@ router.post(
     } else {
       const taskData = await userTasks.findOne({ user_id: req.params.user });
       const Admindata = await Admin.findOne({ number: 1 });
+      const datag = await Analytics.findOne({ analytics_id: 1043 });
+
+        if(!datag){
+           let newData = new Analytics({
+             total_views: 1,
+             total_signup: 1,
+             coding_tasks: 1,
+             design_tasks: 1,
+             explore_tasks: 1
+           })
+
+        newData.save((error, data) => {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("Successfully added records for analytics");
+          }
+        })
+      }
 
       var currentdate = new Date();
 
@@ -130,10 +149,37 @@ router.post(
 
       if (adminChoosedResults[0].task_category === "CODING") { //Checking the task category
         type = coding_id;
+        await Analytics.updateOne({ total_views: datag.total_views }, [
+          {
+            $set: {
+             coding_tasks: {
+              $add: ["$coding_tasks", 1],
+            }
+           }
+          }
+        ]);
       } else if (adminChoosedResults[0].task_category === "DESIGN") {
         type = design_id;
+        await Analytics.updateOne({ total_views: datag.total_views }, [
+          {
+            $set: {
+             design_tasks: {
+              $add: ["$design_tasks", 1],
+            }
+           }
+          }
+        ]);
       } else if (adminChoosedResults[0].task_category === "EXPLORE") {
         type = explore_id;
+        await Analytics.updateOne({ total_views: datag.total_views }, [
+          {
+            $set: {
+             explore_tasks: {
+              $add: ["$explore_tasks", 1],
+            }
+           }
+          }
+        ]);
       }
 
       (async () => {
