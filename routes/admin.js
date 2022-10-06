@@ -7,6 +7,7 @@ const Tasks = require("../models/tasks");
 const Admin = require("../models/admin");
 const Tests = require("../models/tests");
 const IMP = require("../models/confidential");
+const Analytics = require("../models/analytics");
 const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
@@ -1284,6 +1285,59 @@ router.post(
     res.redirect("/admin/test/submittions");
   }
 );
+
+router.get('/analytics', async(req, res, next) => {
+  const data = await Analytics.findOne({ analytics_id: 1043 });
+  const userdata = await User.find({ adminUser: false });
+  const points = await userTasks.find()
+  if(!data){
+    let newData = new Analytics({
+      total_views: 1,
+      total_signup: 1,
+      coding_tasks: 1,
+      design_tasks: 1,
+      explore_tasks: 1
+    })
+
+    newData.save((error, data) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Successfully added records for analytics");
+      }
+    })
+  }
+  await Analytics.updateOne({ total_views: data.total_views }, [
+    {
+      $set: {
+        total_views: {
+          $add: ["$total_views", 1],
+        }
+      }
+    }
+  ]);
+
+  const ageArray = userdata.map(function(data){
+    return data.age;
+  });
+
+  let pointsArray = points.map(function(data){
+    return data.total_points
+  })
+
+  const strigifiedData = JSON.stringify(ageArray);
+  const stringifiedPoints = JSON.stringify(pointsArray)
+
+  let date = new Date()
+
+  res.render("analytics", {
+    strigifiedData: strigifiedData,
+    data: data,
+    userdata: userdata,
+    date: date,
+    stringifiedPoints: stringifiedPoints
+  })
+})
 
 //Google sheets authentication
 const authentication = async () => {
