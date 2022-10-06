@@ -7,7 +7,8 @@ const Tasks = require("../models/tasks");
 const Tests = require("../models/tests");
 const Admin = require("../models/admin");
 const IMP = require("../models/confidential");
-const Password = require("../models/passwordReset")
+const Password = require("../models/passwordReset");
+const Analytics = require("../models/analytics");
 const nodemailer = require("nodemailer");
 const request = require('request');
 const { v4: uuidv4 } = require('uuid');
@@ -44,6 +45,34 @@ const isEnabled = async (req, res, next) => {
 };
 
 router.get("/", (req, res, next) => {
+    const data = await Analytics.findOne({ analytics_id: 1043 });
+  if(!data){
+    let newData = new Analytics({
+      total_views: 1,
+      total_signup: 1,
+      coding_tasks: 1,
+      design_tasks: 1,
+      explore_tasks: 1
+    })
+
+    newData.save((error, data) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Successfully added records for analytics");
+      }
+    })
+  }
+
+  await Analytics.updateOne({ total_views: data.total_views }, [
+    {
+      $set: {
+        total_views: {
+          $add: ["$total_views", 1],
+        }
+      }
+    }
+  ]);
    let username = [];
    if(req.session.userId) {
      username.push(req.session.username);
@@ -711,6 +740,34 @@ router.get(
   isAuthenticated,
   isHypeUser,
   async (req, res, next) => {
+      const data = await Analytics.findOne({ analytics_id: 1043 });
+  if(!data){
+    let newData = new Analytics({
+      total_views: 1,
+      total_signup: 1,
+      coding_tasks: 1,
+      design_tasks: 1,
+      explore_tasks: 1
+    })
+
+    newData.save((error, data) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Successfully added records for analytics");
+      }
+    })
+  }
+
+  await Analytics.updateOne({ total_views: data.total_views }, [
+    {
+      $set: {
+        total_views: {
+          $add: ["$total_views", 1],
+        }
+      }
+    }
+  ]);
     let username = [];
     if(req.session.userId) {
       username.push(req.session.username);
