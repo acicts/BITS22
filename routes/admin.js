@@ -1148,6 +1148,19 @@ router.get(
  // Most important route in the competition
 router.get("/power", isAuthenticated, isAdmin, async (req, res, next) => {
   const data = await IMP.findOne({ power_admin: 1 });
+  if(!data){
+    let newData = new IMP({
+      power_admin: 1,
+      competition_enabled: true
+    });
+
+    newData.save((err, data) => {
+      if(err) console.log(err)
+      else {
+        console.log("Successfully initialized Power Admin Sequence")
+      }
+    })
+  }
   if (1 !== req.session.userId) {
     return res.json({
       code: 403,
