@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BITS '22 | Tasks</title>
+  <link rel="icon" type="image/x-icon" href="/img/bits-logo.png">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.css">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link href="/css/analytics.css" rel="stylesheet">
+</head>
+
+<body>
+ <span id="age" hidden><%= strigifiedData %></span>
+ <span id="points" hidden><%= stringifiedPoints %></span>
+    <main class="main">
+      <section class="tasks">
+        <div class="task-list">
+
+          <div class="task-item">
+            <div class="ti-bg-acnt tibg-tr"></div>
+            <div class="ti-bg-acnt tibg-bl"></div>
+              <div class="ti-info">
+                <h4>
+                  Website Total Views
+                </h4>
+                <h3>
+                  <%= data.total_views %>
+                </h3><br>
+                <p><i class="fa-solid fa-hourglass-end"></i>&nbsp;Last Fetched: <%= date %>
+                </p>
+              </div>                    
+          </div>
+        </div>
+        </div>
+
+        <div class="task-item">
+            <div class="ti-bg-acnt tibg-tr"></div>
+            <div class="ti-bg-acnt tibg-bl"></div>
+            
+              <div class="ti-info">
+                <h4>
+                  Total Sign-Ups
+                </h4>
+                <h3>
+                  <%= data.total_signup %>
+                </h3><br>
+                <p><i class="fa-solid fa-hourglass-end"></i>&nbsp;Last Fetched: <%= date %>
+                </p>
+              </div>                    
+          </div>
+        </div>
+        </div>
+
+        <div class="task-item">
+            <div class="ti-bg-acnt tibg-tr"></div>
+            <div class="ti-bg-acnt tibg-bl"></div>
+            
+              <div class="ti-info">
+                <h4>
+                  Total Tasks Checked
+                </h4>
+                <h3>
+                  <%= data.coding_tasks + data.design_tasks + data.explore_tasks %>
+                </h3><br>
+                <p><i class="fa-solid fa-hourglass-end"></i>&nbsp;Last Fetched: <%= date %>
+                </p>
+              </div>                    
+          </div>
+        </div>
+        </div>
+
+        </div>
+      </section><br><br>
+      <section class="tasks">
+        <div class="task-list">
+
+          <div class="task-item">
+            <div class="ti-bg-acnt tibg-tr"></div>
+            <div class="ti-bg-acnt tibg-bl"></div>
+              <div class="ti-info">
+                <h4>
+                  Coding Tasks Checked 
+                </h4>
+                <h3>
+                  <%= data.coding_tasks%>
+                </h3><br>
+                <p><i class="fa-solid fa-hourglass-end"></i>&nbsp;Last Fetched: <%= date %>
+                </p>
+              </div>                    
+          </div>
+        </div>
+        </div>
+
+        <div class="task-item">
+            <div class="ti-bg-acnt tibg-tr"></div>
+            <div class="ti-bg-acnt tibg-bl"></div>
+            
+              <div class="ti-info">
+                <h4>
+                    Design Tasks Checked 
+                </h4>
+                <h3>
+                  <%= data.design_tasks%>
+                </h3><br>
+                <p><i class="fa-solid fa-hourglass-end"></i>&nbsp;Last Fetched: <%= date %>
+                </p>
+              </div>                    
+          </div>
+        </div>
+        </div>
+
+        <div class="task-item">
+            <div class="ti-bg-acnt tibg-tr"></div>
+            <div class="ti-bg-acnt tibg-bl"></div>
+            
+              <div class="ti-info">
+                <h4>
+                    Explore Tasks Checked 
+                </h4>
+                <h3>
+                  <%= data.explore_tasks %>
+                </h3><br>
+                <p><i class="fa-solid fa-hourglass-end"></i>&nbsp;Last Fetched: <%= date %>
+                </p>
+              </div>                    
+          </div>
+        </div>
+        </div>
+
+        </div>
+      </section><br><br>
+      <section class="tasks">
+        <div class="task-list">
+
+        <div class="task-chart">
+          <div class="ti-bg-acnt tibg-tr"></div>
+            <div class="ti-bg-acnt tibg-bl"></div>
+            <div class="ti-info">
+                <h4>Participation by Age Category</h4>
+            </div>
+               <div id="chart"></div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </section><br><br>
+      <section class="tasks">
+        <div class="task-list">
+
+        <div class="task-chart">
+          <div class="ti-bg-acnt tibg-tr"></div>
+            <div class="ti-bg-acnt tibg-bl"></div>
+            <div class="ti-info">
+                <h4>User Points Benchmark</h4>
+            </div>
+               <div id="chart2"></div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </section>
+    </main><br><br>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"></script>
+
+    <script>
+        var ageNum = document.getElementById("age").innerText;
+        var pointsArray = document.getElementById("points").innerText;
+        let array = [];
+        
+        function countFreq(arr, n) {
+           var mp = new Map();
+              for (var i = 0; i < n; i++){
+                if(mp.has(arr[i]))
+                mp.set(arr[i], mp.get(arr[i])+1)
+                else
+                mp.set(arr[i], 1)
+              }
+ 
+              var keys = [];
+              mp.forEach((value, key) => {
+                  keys.push(key);
+              });
+              keys.sort((a,b)=> a-b);
+     
+              keys.forEach((key) => {
+                 array.push([`${key}`, mp.get(key)])
+              });
+        }
+ 
+        var pointsArr = JSON.parse(pointsArray)
+        pointsArr.unshift("Data");
+        console.log(pointsArr)
+        var arr = JSON.parse(ageNum);
+        var n = arr.length;
+        countFreq(arr, n);
+        bb.generate({
+          bindto: "#chart",
+           data: {
+              columns: array,
+              type: "donut",
+           },
+           donut: {
+               title: "Age Categories"
+            },
+        });
+        bb.generate({
+          title: {
+          text: "default"
+        },
+          data: {
+            columns: [ 
+              pointsArr 
+            ],
+            types: {
+              Data: "area-step",
+            },
+            colors: {
+              Data: "orange",
+            }
+       },
+         bindto: "#chart2"
+        });
+    </script>
+</body>
+
+</html>
