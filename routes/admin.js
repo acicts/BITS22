@@ -42,6 +42,22 @@ router.get("/", isAuthenticated, isAdmin, async (req, res, next) => {
 
   if (userData.adminUser) { //Fetching user profile
     const taskdata = await Admin.findOne({ number: 1 });
+    
+    if(!taskdata){
+      let newData = new Admin({
+        number: 1,
+        taskData: [],
+        quizData: []
+      });
+  
+      newData.save((err, data) => {
+        if(err) console.log(err)
+        else {
+          console.log("Successfully initialized Admin Panel")
+        }
+      })
+    }
+    
     const tasks = taskdata.taskData;
 
     const choosedResults = tasks.map(function (data) {
