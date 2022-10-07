@@ -199,12 +199,12 @@
               });
         }
  
-        var arr = [13, 14, 13, 15];
-        var n = arr.length;
-        countFreq(arr, n);
         var pointsArr = JSON.parse(pointsArray)
         pointsArr.unshift("Data");
         console.log(pointsArr)
+        var arr = JSON.parse(ageNum);
+        var n = arr.length;
+        countFreq(arr, n);
         bb.generate({
           bindto: "#chart",
            data: {
