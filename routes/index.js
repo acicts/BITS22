@@ -44,7 +44,7 @@ const isEnabled = async (req, res, next) => {
   }
 };
 
-router.get("/", (req, res, next) => {
+router.get("/", async (req, res, next) => {
     const data = await Analytics.findOne({ analytics_id: 1043 });
   if(!data){
     let newData = new Analytics({
@@ -111,7 +111,7 @@ router.post("/signup", async (req, res, next) => {
     res.send();
   } else {
     if (personInfo.password == personInfo.passwordConf) {
-      User.findOne({ email: personInfo.email }, (err, data) => {
+      User.findOne({ email: personInfo.email }, async (err, data) => {
         if (!data) {
           const datag = await Analytics.findOne({ analytics_id: 1043 });
           if(!datag){
