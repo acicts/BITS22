@@ -390,6 +390,20 @@ body::-webkit-scrollbar-thumb:hover {
     height: 2.6em;
   }
 }
+@keyframes mascot-float {
+  0% {
+    transform: translateY(0rem);
+  }
+  25% {
+    transform: translateY(-1rem);
+  }
+  75% {
+    transform: translateY(1rem);
+  }
+  100% {
+    transform: translateY(0rem);
+  }
+}
 .main {
   width: 100%;
 }
@@ -455,31 +469,16 @@ body::-webkit-scrollbar-thumb:hover {
   box-shadow: 10px 2px 90px 4px #0913FF, -10px 2px 90px 4px #2788F7;
 }
 
-@keyframes mascot-float {
-  0%{
-    transform: translateY(0rem);
-  }
-  25%{
-    transform: translateY(-1rem);
-  }
-  75%{
-    transform: translateY(1rem);
-  }
-  100%{
-    transform: translateY(0rem);
-  }
-}
-
 .mascot {
   width: 40%;
   display: flex;
   align-items: center;
   padding: 0 6em 6em 0;
   animation-name: mascot-float;
-  animation-duration: 6 s;
+  animation-duration: 6s;
   animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
-
 .mascot img {
   width: 100%;
 }

@@ -1,5 +1,20 @@
 @import "./main"; //NOTE: this is only used to generate the css so, this should be the correct path
 
+@keyframes mascot-float {
+    0%{
+      transform: translateY(0rem);
+    }
+    25%{
+      transform: translateY(-1rem);
+    }
+    75%{
+      transform: translateY(1rem);
+    }
+    100%{
+      transform: translateY(0rem);
+    }
+}
+
 .main {
     width: 100%;
     
@@ -77,6 +92,10 @@
     display: flex;
     align-items: center;
     padding: 0 6em 6em 0;
+    animation-name: mascot-float;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 
     img {
         width: 100%;
