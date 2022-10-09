@@ -24,14 +24,6 @@ const isAuthenticated = (req, res, next) => {
   }
 };
 
-const isHypeUser = (req, res, next) => {
-  if (req.session.hypertextUser === true) {
-    res.json({ code: 403, message: "Forbidden" });
-  } else {
-    next();
-  }
-};
-
 const isEnabled = async (req, res, next) => {
   const data = await IMP.findOne({ power_admin: 1 });
   if (!data.competition_enabled) {
@@ -684,7 +676,6 @@ router.get(
   "/tasks",
   isEnabled,
   isAuthenticated,
-  isHypeUser,
   async (req, res, next) => {
     let username = [];
     if(req.session.userId) {
@@ -807,7 +798,6 @@ router.get(
   "/profile",
   isEnabled,
   isAuthenticated,
-  isHypeUser,
   async (req, res, next) => {
       const data = await Analytics.findOne({ analytics_id: 1043 });
   if(!data){
