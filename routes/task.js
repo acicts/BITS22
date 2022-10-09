@@ -31,14 +31,6 @@ const isAdmin = (req, res, next) => {
   }
 };
 
-const isHypeUser = (req, res, next) => {
-  if (req.session.hypertextUser) {
-    res.json({ code: 403, message: "Forbidden" });
-  } else {
-    next();
-  }
-};
-
 const isEnabled = async (req, res, next) => {
   const data = await IMP.findOne({ power_admin: 1 });
   if (!data.competition_enabled) {
@@ -51,7 +43,7 @@ const isEnabled = async (req, res, next) => {
   }
 };
 
-router.get("/:id", isEnabled, isAuthenticated, isHypeUser, (req, res, next) => {
+router.get("/:id", isEnabled, isAuthenticated, (req, res, next) => {
    let username = [];
    if(req.session.userId) {
       username.push(req.session.username);
@@ -125,7 +117,6 @@ router.post(
   "/submit/:id",
   isEnabled,
   isAuthenticated,
-  isHypeUser,
   async (req, res, next) => {
     const userData = await userTasks.findOne({ user_id: req.session.userId });
     if (!userData) {
@@ -270,7 +261,6 @@ router.post(
   "/resubmit/:id",
   isEnabled,
   isAuthenticated,
-  isHypeUser,
   async (req, res, next) => {
     const userData = await userTasks.findOne({ user_id: req.session.userId });
     if (!userData) {
