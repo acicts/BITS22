@@ -429,13 +429,15 @@ body::-webkit-scrollbar-thumb:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   width: max-content;
+  max-width: 90%;
+  text-align: center;
   display: flex;
   flex-direction: column;
   gap: 1em;
   align-items: center;
 }
 .main .msg .msg-text {
-  font-size: 2em;
+  font-size: 1.3em;
   color: #DCE7FE;
   font-weight: bold;
 }
@@ -456,6 +458,12 @@ body::-webkit-scrollbar-thumb:hover {
   .main .code {
     font-size: 40vw;
   }
+  .main .msg .msg-text {
+    font-size: 1.1em;
+  }
+  .main .msg .msg-btn {
+    font-size: 1em;
+  }
 }
 @media screen and (max-width: 540px) {
   .main .code {
@@ -463,7 +471,7 @@ body::-webkit-scrollbar-thumb:hover {
     writing-mode: vertical-rl;
   }
   .main .msg .msg-text {
-    font-size: 1.5em;
+    font-size: 1em;
   }
   .main .msg .msg-btn {
     font-size: 1em;
