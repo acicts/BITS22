@@ -1398,10 +1398,30 @@ router.get('/analytics', async(req, res, next) => {
 
   let pointsArray = points.map(function(data){
     return data.total_points
-  })
+  });
+  
+  let timeSpendArray = data.time_spend.map(function(data){
+    return data.time
+  });
+
+  let pageClicksArray = data.total_page_clicks.map(function(data){
+    return data.clicks
+  });
+
+  let buttonClicksArray = data.total_button_clicks.map(function(data){
+    return data.clicks
+  });
+
+  let linkPressArray = data.total_link_press.map(function(data){
+    return data.clicks
+  });
 
   const strigifiedData = JSON.stringify(ageArray);
-  const stringifiedPoints = JSON.stringify(pointsArray)
+  const stringifiedPoints = JSON.stringify(pointsArray);
+  const stringifiedTime = JSON.stringify(timeSpendArray);
+  const stringifiedPageClicks = JSON.stringify(pageClicksArray);
+  const stringifiedButtonClicks = JSON.stringify(buttonClicksArray);
+  const stringifiedLinkPress = JSON.stringify(linkPressArray);
 
   let date = new Date()
 
@@ -1410,7 +1430,11 @@ router.get('/analytics', async(req, res, next) => {
     data: data,
     userdata: userdata,
     date: date,
-    stringifiedPoints: stringifiedPoints
+    stringifiedPoints: stringifiedPoints,
+    stringifiedTime: stringifiedTime,
+    stringifiedPageClicks: stringifiedPageClicks,
+    stringifiedButtonClicks: stringifiedButtonClicks,
+    stringifiedLinkPress: stringifiedLinkPress
   })
 })
 
