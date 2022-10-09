@@ -749,9 +749,18 @@ router.get(
           test_name: data.test_name,
           test_description: data.test_description,
           test_link: data.test_link,
+          time: data.time,
           test_enabled: data.testEnabled,
         };
       });
+
+    for(i = 0; i < filteredQuiz.length; i++) {
+        filteredQuiz[i].createdAt = filteredQuiz[i].createdAt.toString()
+    }
+
+    for(i = 0; i < filteredQuiz.length; i++) {
+        filteredQuiz[i].createdAt = filteredQuiz[i].createdAt.replace('00:00:00 GMT+0000 (Coordinated Universal Time)', '')
+    }
 
     res.render("onlinetests", {
       filteredQuiz: filteredQuiz,
