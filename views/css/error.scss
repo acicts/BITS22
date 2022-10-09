@@ -45,13 +45,15 @@
         transform: translate(-50%, -50%);
 
         width: max-content;
+        max-width: 90%;
+        text-align: center;
         display: flex;
         flex-direction: column;
         gap: 1em;
         align-items: center;
         
         .msg-text {
-            font-size: 2em;
+            font-size: 1.3em;
             color: $col-light;
             font-weight: bold;
         }
@@ -78,6 +80,16 @@
     .main .code {
         font-size: 40vw;
     }
+
+    .main .msg {
+        .msg-text {
+            font-size: 1.1em;
+        }
+    
+        .msg-btn {
+            font-size: 1em;
+        }
+    }
 }
 
 @media screen and (max-width: 540px) {
@@ -88,7 +100,7 @@
 
     .main .msg {
         .msg-text {
-            font-size: 1.5em;
+            font-size: 1em;
         }
 
         .msg-btn {

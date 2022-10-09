@@ -655,6 +655,7 @@ body::-webkit-scrollbar-thumb:hover {
   position: relative;
   overflow: hidden;
   width: auto;
+  flex: 1;
   padding: 1.5em 2em;
 }
 .main .main-panel .ti-bg-acnt {
