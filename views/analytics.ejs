@@ -20,6 +20,10 @@
 <body>
  <span id="age" hidden><%= strigifiedData %></span>
  <span id="points" hidden><%= stringifiedPoints %></span>
+ <span id="time" hidden><%= stringifiedTime %></span>
+ <span id="page-clicks" hidden><%= stringifiedPageClicks %></span>
+ <span id="button-clicks" hidden><%= stringifiedButtonClicks %></span>
+ <span id="link-clicks" hidden><%= stringifiedLinkPress %></span>
     <main class="main">
       <section class="tasks">
         <div class="task-list">
@@ -168,7 +172,42 @@
         </div>
 
         </div>
+      </section><br><br>
+
+      <section class="tasks">
+        <div class="task-list">
+
+        <div class="task-chart">
+          <div class="ti-bg-acnt tibg-tr"></div>
+            <div class="ti-bg-acnt tibg-bl"></div>
+            <div class="ti-info">
+                <h4>Total Time & Page Clicks Benchmark (User Engagement)</h4>
+            </div>
+               <div id="chart3"></div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </section><br><br>
+
+      <section class="tasks">
+        <div class="task-list">
+
+        <div class="task-chart">
+          <div class="ti-bg-acnt tibg-tr"></div>
+            <div class="ti-bg-acnt tibg-bl"></div>
+            <div class="ti-info">
+                <h4>Total Buttons, Links & Page Clicks Benchmark (User Engagement)</h4>
+            </div>
+               <div id="chart4"></div>
+            </div>
+          </div>
+        </div>
+
+        </div>
       </section>
+
     </main><br><br>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
@@ -177,10 +216,16 @@
     <script>
         var ageNum = document.getElementById("age").innerText;
         var pointsArray = document.getElementById("points").innerText;
+        var timeArray = document.getElementById("time").innerText;
+        var pageClicksArray = document.getElementById("page-clicks").innerText;
+        var buttonClicksArray = document.getElementById("button-clicks").innerText;
+        var linkClicksArray = document.getElementById("link-clicks").innerText;
+
         let array = [];
         
         function countFreq(arr, n) {
            var mp = new Map();
+
               for (var i = 0; i < n; i++){
                 if(mp.has(arr[i]))
                 mp.set(arr[i], mp.get(arr[i])+1)
@@ -200,11 +245,12 @@
         }
  
         var pointsArr = JSON.parse(pointsArray)
-        pointsArr.unshift("Data");
-        console.log(pointsArr)
+        pointsArr.unshift("Points");
+
         var arr = JSON.parse(ageNum);
         var n = arr.length;
         countFreq(arr, n);
+
         bb.generate({
           bindto: "#chart",
            data: {
@@ -215,6 +261,7 @@
                title: "Age Categories"
             },
         });
+
         bb.generate({
           title: {
           text: "default"
@@ -224,14 +271,75 @@
               pointsArr 
             ],
             types: {
-              Data: "area-step",
+              Points: "area-step",
             },
             colors: {
-              Data: "orange",
+              Points: "orange",
             }
        },
          bindto: "#chart2"
         });
+
+        var timeArr = JSON.parse(timeArray)
+        timeArr.unshift("Time");
+
+        var pageClicksArr = JSON.parse(pageClicksArray)
+        pageClicksArr.unshift("Clicks");
+
+        bb.generate({
+          title: {
+          text: "default"
+        },
+          data: {
+            columns: [ 
+              timeArr,
+              pageClicksArr
+            ],
+            types: {
+              Time: "area-step",
+              Clicks: "area-step"
+            },
+            colors: {
+              Time: "#F25F5C",
+              Clicks: "#FFE066"
+            }
+        },
+         bindto: "#chart3"
+        });
+
+        var pageClicksArr = JSON.parse(pageClicksArray)
+        pageClicksArr.unshift("Clicks");
+        
+        var buttonClicksArr = JSON.parse(buttonClicksArray)
+        buttonClicksArr.unshift("Buttons");
+
+        var linkClicksArr = JSON.parse(linkClicksArray)
+        linkClicksArr.unshift("Links");
+
+        bb.generate({
+          title: {
+          text: "default"
+        },
+          data: {
+            columns: [ 
+              pageClicksArr,
+              buttonClicksArr,
+              linkClicksArr
+            ],
+            types: {
+              Clicks: "area-step",
+              Buttons: "area-step",
+              Links: "area-step"
+            },
+            colors: {
+              Clicks: "red",
+              Buttons: "yellow",
+              Links: "green"
+            }
+        },
+         bindto: "#chart4"
+        });
+        
     </script>
 </body>
 
