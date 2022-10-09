@@ -807,6 +807,7 @@ router.post("/test/add", isAuthenticated, isAdmin, async (req, res, next) => {
       createdAt: new Date(req.body.date),
       test_grade: req.body.grade,
       test_link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      time: req.body.time + `AM`,
       testEnabled: false,
       test_type: req.body.type,
     });
@@ -1294,70 +1295,6 @@ router.post(
     }
     main().catch(console.error);
     res.redirect("/admin/email/send");
-  }
-);
-
-router.get(
-  "/test/submittions",
-  isAuthenticated,
-  isAdmin,
-  async (req, res, next) => {
-    const data = await Admin.findOne({ number: 1 });
-    const quiz = data.quizData;
-
-    const quizArray = quiz.map(function (data) {
-      return {
-        id: data._id,
-        quiz_name: data.quiz_name,
-        quiz_id: data.quiz_id,
-        username: data.username,
-        user_id: data.userId,
-      };
-    });
-
-    res.render("submittions", {
-      quizArray: quizArray,
-    });
-  }
-);
-
-router.post(
-  "/test/points/:id/:userid",
-  isAuthenticated,
-  isAdmin,
-  async (req, res, next) => {
-    const Admindata = await Admin.findOne({ number: 1 });
-
-    var adminTasksArray = Admindata.quizData;
-
-    const adminChoosedResults = adminTasksArray
-      .filter(function (data) {
-        return data.quiz_id === parseInt(req.params.id);
-      })
-      .map(function (data) {
-        return {
-          id: data._id,
-          quiz_title: data.quiz_name,
-          quiz_id: data.quiz_id,
-        };
-      });
-
-    await userTasks.updateOne({ user_id: req.params.userid }, [
-      {
-        $set: {
-          total_points: {
-            $add: ["$total_points", parseInt(req.body.points)],
-          },
-        },
-      },
-    ]);
-
-    await Admin.update(
-      { _id: Admindata._id },
-      { $pull: { quizData: { _id: adminChoosedResults[0].id } } }
-    );
-
-    res.redirect("/admin/test/submittions");
   }
 );
 
