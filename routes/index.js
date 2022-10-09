@@ -82,6 +82,37 @@ router.get("/", async (req, res, next) => {
    });
 });
 
+router.post("/update", (req, res, next) => {
+   const time_in_sec = req.body.timeSpend / 1000;
+
+   Analytics
+        .findOne({ analytics_id: 1043 })
+        .then((data) => {
+          data.time_spend.push({ 
+            time: time_in_sec
+          }),
+          data.total_page_clicks.push({
+            clicks: req.body.totalClicks
+          }),
+          data.total_button_clicks.push({ 
+            clicks: req.body.totalButtonClicks.total
+          }),
+          data.total_link_press.push({ 
+            clicks: req.body.totalLinkClickCount
+          }),
+          data.total_mouse_movement.push({ 
+            movement: req.body.totalMouseMovementCount
+          });
+          data
+            .save()
+            .then(() => {
+              return "Success";
+            })
+            .catch(console.log);
+        })
+        .catch(console.log);
+})
+
 router.get("/signup", (req, res, next) => {
    let username = [];
    if(req.session.userId) {
@@ -685,7 +716,7 @@ router.get(
 );
 
 router.get(
-  "/onlinetest",
+  "/quiz",
   isEnabled,
   isAuthenticated,
   async (req, res, next) => {
