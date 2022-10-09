@@ -23,7 +23,7 @@
     <main class="main">
       <section class="tasks">
         <div class="task-list">
-          <% filteredQuiz.forEach(function(data) { %>
+                    <% filteredQuiz.forEach(function(data) { %>
           <div class="task-item">
             <div class="ti-bg-acnt tibg-tr"></div>
             <div class="ti-bg-acnt tibg-bl"></div>
@@ -35,26 +35,10 @@
                 <p>
                   <%= data.test_description %>
                 </p><br>
-                <p><i class="fa-solid fa-calendar-days"></i>&nbsp;Test Date: <%= data.createdAt %>
-                </p>
-              </div>
-              <% if(data.test_enabled){ %>
-                <form action="/test/submit" method="post" onsubmit="return submitForm2(this);">
-                  <input type="hidden" id="link" name="link" value="<%= data.test_link %>" />
-                  <input type="hidden" id="name" name="name" value="<%= data.test_name %>" />
-                  <input type="hidden" id="id" name="id" value="<%= data.test_id %>" />
-                  <div class="ti-cta" style="display: flex;">
-                    <input type="submit" value="Start the Quiz" class="start-quiz-input"></input><br><br>
-                  </div>
-                </form>
-                <% } else { %>
-                <form>
-                  <div class="ti-cta" style="display: flex;">
-                    <input type="submit" value="Start the Quiz" class="start-quiz-input start-quiz-disabled" disabled></input><br><br>
-                  </div>
-                </form>
-                <% } %>
-                    
+                <p><i class="fa-solid fa-location-dot"></i>&nbsp; Quiz Venue: Ananda College ICT Lab (Sathmahala)</p><br>
+                <p><i class="fa-solid fa-calendar-days"></i>&nbsp; Quiz Date: <%= data.createdAt %></p>
+                <p><i class="fa-solid fa-clock"></i>&nbsp; Quiz Time: <%= data.time %></p>
+              </div>                    
           </div>
         </div>
         </div>
