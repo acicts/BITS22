@@ -7,7 +7,7 @@ const Tasks = require("../models/tasks");
 const Tests = require("../models/tests");
 const Admin = require("../models/admin");
 const IMP = require("../models/confidential");
-const Password = require("../models/passwordReset");
+const Password = require("../models/passwordReset")
 const Analytics = require("../models/analytics");
 const nodemailer = require("nodemailer");
 const request = require('request');
@@ -27,9 +27,11 @@ const isAuthenticated = (req, res, next) => {
 const isEnabled = async (req, res, next) => {
   const data = await IMP.findOne({ power_admin: 1 });
   if (!data.competition_enabled) {
-    res.json({
-      code: 403,
-      message: "Competition will be started on 8th October. Stay tuned!",
+    res.render("error", {
+      code: "403",
+      msg: "Competition will be started on 11th October At 6:00PM. Stay tuned!",
+      icon: "fa-solid fa-flag-checkered",
+      username: []
     });
   } else {
     next();
@@ -37,7 +39,7 @@ const isEnabled = async (req, res, next) => {
 };
 
 router.get("/", async (req, res, next) => {
-    const data = await Analytics.findOne({ analytics_id: 1043 });
+  const data = await Analytics.findOne({ analytics_id: 1043 });
   if(!data){
     let newData = new Analytics({
       total_views: 1,
@@ -161,10 +163,9 @@ router.post("/signup", async (req, res, next) => {
          total_signup: {
           $add: ["$total_signup", 1],
         }
-       }
-       }
-       ]);
-          
+      }
+     }
+     ]);
           let c;
           User.findOne({}, (err, data) => {
             if (data) {
@@ -219,7 +220,7 @@ router.post("/signup", async (req, res, next) => {
             (async () => {
               try {
                 const { sheets } = await authentication();
-                const { fullname, email, school, grade, age, admission } = req.body;
+                const { fullname, email, school, grade, age, admission, phone } = req.body;
 
                 const writeReq = await sheets.spreadsheets.values.append({
                   spreadsheetId: id,
@@ -235,6 +236,7 @@ router.post("/signup", async (req, res, next) => {
                         grade,
                         "bits22-" + bits_id,
                         admission,
+                        phone
                       ],
                     ],
                   },
@@ -681,7 +683,7 @@ router.get(
     if(req.session.userId) {
       username.push(req.session.username);
     }
-    const tasks = await Tasks.find();
+    let tasks = await Tasks.find();
     const user_tasks = await userTasks.findOne({ user_id: req.session.userId });
     const approved = user_tasks.approved_tasks;
     const declined = user_tasks.declined_tasks;
@@ -695,6 +697,10 @@ router.get(
     const pendingArray = pending.map(function (data) {
       return data.task_id;
     });
+
+    for(i = 0; i < tasks.length; i++) {
+        tasks[i].task_id = tasks[i].task_id / 100
+    }
 
     res.render("taskdata", {
       tasks: tasks,
@@ -799,7 +805,7 @@ router.get(
   isEnabled,
   isAuthenticated,
   async (req, res, next) => {
-      const data = await Analytics.findOne({ analytics_id: 1043 });
+    const data = await Analytics.findOne({ analytics_id: 1043 });
   if(!data){
     let newData = new Analytics({
       total_views: 1,
@@ -841,7 +847,7 @@ router.get(
       return {
         task_title: data.task_title,
         task_description: data.task_description,
-        task_id: data.task_id,
+        task_id: data.task_id / 100,
         task_category: data.task_category,
       };
     });
@@ -850,7 +856,7 @@ router.get(
       return {
         task_title: data.task_title,
         task_description: data.task_description,
-        task_id: data.task_id,
+        task_id: data.task_id / 100,
         task_category: data.task_category,
         denial_reason: data.denial_reason,
       };
@@ -860,7 +866,7 @@ router.get(
       return {
         task_title: data.task_title,
         task_description: data.task_description,
-        task_id: data.task_id,
+        task_id: data.task_id / 100,
         task_category: data.task_category,
       };
     });

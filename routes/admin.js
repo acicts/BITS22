@@ -117,6 +117,28 @@ router.post(
 
       var currentdate = new Date();
 
+      let id = parseInt(req.params.id) / 100;
+
+      if(task_dat.task_category === "CODING"){
+         if(id < 10){
+             id = `C0${id}`
+         } else {
+             id = `C${id}`
+         }
+      } else if(task_dat.task_category === "DESIGN"){
+         if(id < 10){
+             id = `D0${id}`
+         } else {
+             id = `D${id}`
+         }
+      } else if(task_dat.task_category === "EXPLORE"){
+         if(id < 10){
+             id = `E0${id}`
+         } else {
+             id = `E${id}`
+         }
+      }
+
       var pendingTasksArray = taskData.pending_tasks;
       var adminTasksArray = Admindata.taskData;
       var sheetDataArray = task_dat.sheetData;
@@ -415,7 +437,7 @@ text-decoration: none !important
 <table class=t85 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t86 style="width:315px;"><h1 class=t92 style="text-decoration:none;text-transform:none;color:#19C346;text-align:center;mso-line-height-rule:exactly;mso-text-raise:1px;font:normal 700 48px/52px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">Task Approved</h1></td>
 </tr></table>
 </td></tr><tr><td><div class=t84 style="mso-line-height-rule:exactly;mso-line-height-alt:30px;line-height:30px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
-<table class=t75 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t76 style="width:350px;"><p class=t82 style="text-decoration:none;text-transform:none;color:#666666;text-align:center;mso-line-height-rule:exactly;mso-text-raise:3px;font:normal 500 20px/30px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">Congradulations. Your Task ID: ${req.params.id} has been accepted and will count towards in the competition.</p></td>
+<table class=t75 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t76 style="width:350px;"><p class=t82 style="text-decoration:none;text-transform:none;color:#666666;text-align:center;mso-line-height-rule:exactly;mso-text-raise:3px;font:normal 500 20px/30px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">Congradulations. Your Task ID: ${id} has been accepted and will count towards in the competition.</p></td>
 </tr></table>
 </td></tr><tr><td><div class=t61 style="mso-line-height-rule:exactly;mso-line-height-alt:40px;line-height:40px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <table class=t63 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t64 style="background-color:#0055FF;width:308px;text-align:center;line-height:58px;mso-line-height-rule:exactly;mso-text-raise:11px;border-radius:14px 14px 14px 14px;"><a class=t70 href=${process.env.SITE_URL}/profile style="display:block;text-decoration:none;color:#FFFFFF;text-align:center;mso-line-height-rule:exactly;mso-text-raise:11px;font:normal 600 21px/58px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';" target=_blank>Go to Profile</a></td>
@@ -476,6 +498,28 @@ router.post(
       const Admindata = await Admin.findOne({ number: 1 });
 
       var currentdate = new Date();
+
+      let id = parseInt(req.params.id) / 100;
+
+      if(task_dat.task_category === "CODING"){
+         if(id < 10){
+             id = `C0${id}`
+         } else {
+             id = `C${id}`
+         }
+      } else if(task_dat.task_category === "DESIGN"){
+         if(id < 10){
+             id = `D0${id}`
+         } else {
+             id = `D${id}`
+         }
+      } else if(task_dat.task_category === "EXPLORE"){
+         if(id < 10){
+             id = `E0${id}`
+         } else {
+             id = `E${id}`
+         }
+      }
 
       var pendingTasksArray = taskData.pending_tasks;
       var adminTasksArray = Admindata.taskData;
@@ -739,10 +783,10 @@ text-decoration: none !important
 <table class=t85 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t86 style="width:315px;"><h1 class=t92 style="text-decoration:none;text-transform:none;color:#FC2828;text-align:center;mso-line-height-rule:exactly;mso-text-raise:1px;font:normal 700 48px/52px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">Task Rejected</h1></td>
 </tr></table>
 </td></tr><tr><td><div class=t84 style="mso-line-height-rule:exactly;mso-line-height-alt:30px;line-height:30px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
-<table class=t75 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t76 style="width:350px;"><p class=t82 style="text-decoration:none;text-transform:none;color:#666666;text-align:center;mso-line-height-rule:exactly;mso-text-raise:3px;font:normal 500 20px/30px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">Sorry, your task ID: ${req.body.id} got rejected for the following reason. Please fix the issue and Re-Submit from your profile or task page.</p></td>
+<table class=t75 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t76 style="width:350px;"><p class=t82 style="text-decoration:none;text-transform:none;color:#666666;text-align:center;mso-line-height-rule:exactly;mso-text-raise:3px;font:normal 500 20px/30px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">Sorry, your task ID: ${id} got rejected for the following reason. Please fix the issue and Re-Submit from your profile or task page.</p></td>
 </tr></table>
 </td></tr><tr><td><div class=t103 style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
-<table class=t105 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t106 style="width:350px;"><p class=t112 style="text-decoration:none;text-transform:none;color:#FFFFFF;text-align:center;mso-line-height-rule:exactly;mso-text-raise:3px;font:normal 500 20px/30px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">Reason: ${req.body.denialReason}</p></td>
+<table class=t105 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t106 style="width:350px;"><p class=t112 style="text-decoration:none;text-transform:none;color:#FFFFFF;text-align:center;mso-line-height-rule:exactly;mso-text-raise:3px;font:normal 500 20px/30px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">Reason: ${req.body.denialreason}</p></td>
 </tr></table>
 </td></tr><tr><td><div class=t61 style="mso-line-height-rule:exactly;mso-line-height-alt:40px;line-height:40px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <table class=t63 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t64 style="background-color:#0055FF;width:308px;text-align:center;line-height:58px;mso-line-height-rule:exactly;mso-text-raise:11px;border-radius:14px 14px 14px 14px;"><a class=t70 href=https://tabular.email style="display:block;text-decoration:none;color:#FFFFFF;text-align:center;mso-line-height-rule:exactly;mso-text-raise:11px;font:normal 600 21px/58px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';" target=_blank>Go to Profile</a></td>
@@ -830,52 +874,6 @@ router.get("/tests", isAuthenticated, isAdmin, async (req, res, next) => {
     test_data: test_data,
   });
 });
-
-router.post(
-  "/test/enable/:id",
-  isAuthenticated,
-  isAdmin,
-  async (req, res, next) => {
-    const test_data = await Tests.findOne({ test_id: parseInt(req.params.id) });
-    if (!test_data) {
-      res.json({ code: 404, message: "Test not found" });
-    } else {
-      await Tests.updateOne(
-        {
-          test_id: parseInt(req.params.id),
-        },
-        {
-          testEnabled: true,
-          test_link: req.body.link,
-        }
-      );
-      res.redirect("/admin/tests");
-    }
-  }
-);
-
-router.post(
-  "/test/disable/:id",
-  isAuthenticated,
-  isAdmin,
-  async (req, res, next) => {
-    const test_data = await Tests.findOne({ test_id: parseInt(req.params.id) });
-    if (!test_data) {
-      res.json({ code: 404, message: "Test not found" });
-    } else {
-      await Tests.updateOne(
-        {
-          test_id: parseInt(req.params.id),
-        },
-        {
-          testEnabled: false,
-          test_link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-        }
-      );
-      res.redirect("/admin/tests");
-    }
-  }
-);
 
 router.get(
   "/tasks/coding",
@@ -1336,7 +1334,7 @@ router.get('/analytics', async(req, res, next) => {
   let pointsArray = points.map(function(data){
     return data.total_points
   });
-  
+
   let timeSpendArray = data.time_spend.map(function(data){
     return data.time
   });
@@ -1358,7 +1356,7 @@ router.get('/analytics', async(req, res, next) => {
   const stringifiedTime = JSON.stringify(timeSpendArray);
   const stringifiedPageClicks = JSON.stringify(pageClicksArray);
   const stringifiedButtonClicks = JSON.stringify(buttonClicksArray);
-  const stringifiedLinkPress = JSON.stringify(linkPressArray);
+  const stringifiedLinkPress = JSON.stringify(linkPressArray)
 
   let date = new Date()
 
