@@ -64,8 +64,8 @@
 						<label for="competition"><i class="fa-solid fa-award"></i> Competition</label>
 						<select name="competition" required>
 							<option value="" selected disabled hidden>Select Here</option>
-							<option value="bitshype">BITS + HyperText</option>
-							<option value="hype">HyperText Only</option>
+							<option value="bitshype" selected>BITS</option>
+							<option value="hype" disable hidden>HyperText Only</option>
 						</select>
 					</div>
 				</div>
@@ -98,6 +98,7 @@
 			if (highlighted) {
 				document.querySelector(`input[name=${highlighted}]`).classList.add("input-invalid")
 			}
+			disableSubmit(false) // enable the button if it shows error
 		}
 
 		const formSubmit = (status = "") => {
@@ -120,6 +121,17 @@
 			}
 		}
 
+		const disableSubmit = (status = true) => {
+			if (status == true) {
+				document.querySelector("#form-submit-btn").setAttribute("disabled", true)
+				document.querySelector("#form-submit-btn").innerHTML = "<i class='fa-solid fa-paper-plane'> Submitted</i>"
+			}
+			else {
+				document.querySelector("#form-submit-btn").setAttribute("disabled", false)
+				document.querySelector("#form-submit-btn").innerHTML = "Register"
+			}
+		}
+
 		const signup = (data) => {
 			fetch("/signup", {
 				method: "POST",
@@ -134,9 +146,9 @@
 				} 
 				else if (res.status == 200) {
 					res.json().then((data) => {
-						if (data.message == "Email Already Used") {
+						if (data.Success == "Email Already Used") {
 							formSubmit("EmailAlreadyUsed")
-						} else if (data.message == "Passwords Not Matched") {
+						} else if (data.Success == "Passwords Not Matched") {
 							formSubmit("PasswordsNotMatched")
 						}
 					})
@@ -158,6 +170,7 @@
 
 		document.querySelector("#signup-form").addEventListener("submit", (e) => {
 			e.preventDefault()
+			disableSubmit(true) // disable the button on submit
 			const gradeToAge = {
 				"Grade 6": 11,
 				"Grade 7": 12,
