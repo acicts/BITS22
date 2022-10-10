@@ -122,7 +122,14 @@
 		}
 
 		const disableSubmit = (status = true) => {
-			document.querySelector("#form-submit-btn").setAttribute("disabled", status)
+			if (status == true) {
+				document.querySelector("#form-submit-btn").setAttribute("disabled", true)
+				document.querySelector("#form-submit-btn").innerHTML = "<i class='fa-solid fa-paper-plane'> Submitted</i>"
+			}
+			else {
+				document.querySelector("#form-submit-btn").setAttribute("disabled", false)
+				document.querySelector("#form-submit-btn").innerHTML = "Register"
+			}
 		}
 
 		const signup = (data) => {
