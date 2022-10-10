@@ -38,5 +38,92 @@
 	</main>
 
 	<%- include("partials/footer", { active: "profile" }) %>
+
+     <script>
+
+  var INITIAL_WAIT = 3000;
+  var INTERVAL_WAIT = 10000;
+  var ONE_SECOND = 1000;
+
+  var events = ["mouseup", "keydown", "scroll", "mousemove"];
+  var startTime = Date.now();
+  var endTime = startTime + INITIAL_WAIT;
+  var totalTime = 0;
+  var clickCount = 0;
+  var buttonClicks = {
+      total: 0,
+  };
+  var buttonClickCount = 0;
+  var linkClickCount = 0;
+  var keypressCount = 0;
+  var scrollCount = 0;
+  var mouseMovementCount = 0;
+  var linkClickCount = 0;
+
+  setInterval(function () {
+      if (!document.hidden && startTime <= endTime) {
+          startTime = Date.now();
+          totalTime += ONE_SECOND;
+      }
+  }, ONE_SECOND);
+
+  document.addEventListener("DOMContentLoaded", function () {
+      events.forEach(function (e) {
+          document.addEventListener(e, function () {
+              endTime = Date.now() + INTERVAL_WAIT;
+              if (e === "mouseup") {
+                  clickCount++;
+                  if (event.target.nodeName === 'BUTTON') {
+                      if (!buttonClicks[event.target.innerText]) {
+                          buttonClicks[event.target.innerText] = 0;
+                      }
+                      buttonClicks[event.target.innerText] += 1;
+                      buttonClicks.total += 1;
+                  }
+                  else if (event.target.nodeName === 'A') {
+                      linkClickCount++;
+                  }
+              }
+              else if (e === "keydown") {
+                  keypressCount++;
+              }
+              else if (e === "scroll") {
+                  scrollCount++;
+              }
+              else if (e === "mousemove") {
+                  mouseMovementCount++;
+              }
+          });
+      });
+  });
+
+  window.addEventListener('beforeunload', function (e) {
+      const data = { 
+          timeSpend: totalTime,
+          totalClicks: clickCount,
+          totalButtonClicks: buttonClicks,
+          totalButtonClickCount: buttonClickCount,
+          totalLinkClickCount: linkClickCount,
+          totalKeypressCount: keypressCount,
+          totalScrollCount: scrollCount,
+          totalMouseMovementCount: mouseMovementCount
+       };
+
+      fetch('/update', {
+          method: 'POST', // or 'PUT'
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+      })
+          .then((response) => response.json())
+          .then((data) => {
+              console.log('Success:', data);
+          })
+          .catch((error) => {
+              console.error('Error:', error);
+          });
+  });
+</script>
 </body>
 </html>

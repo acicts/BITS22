@@ -34,9 +34,11 @@ const isAdmin = (req, res, next) => {
 const isEnabled = async (req, res, next) => {
   const data = await IMP.findOne({ power_admin: 1 });
   if (!data.competition_enabled) {
-    res.json({
-      code: 403,
-      message: "Competition starts on 8th October. Stay tuned!",
+    res.render("error", {
+      code: "403",
+      msg: "Competition will be started on 11th October At 6:00PM. Stay tuned!",
+      icon: "fa-solid fa-flag-checkered",
+      username: []
     });
   } else {
     next();

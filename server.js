@@ -48,9 +48,12 @@ app.use("/admin", admin);
 app.use("/task", task);
 
 app.use((req, res, next) => {
-  const err = new Error("File Not Found");
-  err.status = 404;
-  next(err);
+  res.render("error", {
+        code: "404",
+        msg: "Lost in space?",
+        icon: "fa-solid fa-meteor",
+        username: []
+  })
 });
 
 app.use((err, req, res, next) => {
