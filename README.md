@@ -48,12 +48,14 @@ npm install --save
  - ```REGISTER_ID```,```CODING_ID```,```DESIGN_ID```, ```EXPLORE_ID``` fields follows the same pattern and this is the most trickiest to fill. First of all go to [Google Sheets](https://google.com/sheets) and sign up. After that follow below steps.
 
     **Click on Blank**.
-    ![enter image description here](Spredsheet choose.png)
     
+    <img width="923" alt="Screenshot 2022-10-10 215025" src="https://user-images.githubusercontent.com/115484634/194911706-aa635235-da70-498f-bbdc-6485e894c236.png">
+
     **Add the Spreadsheet name  as "Coding Tasks" and then copy the ID of the sheet. Do this process for other 2 sheets too. Which are Design Tasks & Explore Tasks. After copying all 3 IDs go to ```.env``` file and then fill the ```CODING_ID```,```DESIGN_ID```,```EXPLORE_ID```. After this go to the spredsheets again and then open the Coding Tasks sheet first.**
 
    **Click on the + button in the bottom of the page and then create Sub-Sheets in an order as specified below. (This process goes to other 2 sheets too)**
-   ![enter image description here](https://i.imgur.com/RwVqqEo.png)
+   
+   <img width="881" alt="Screenshot 2022-10-10 215248" src="https://user-images.githubusercontent.com/115484634/194912253-3808bf91-46f3-45f2-be92-ccac94b51dff.png">
    
    *Create Sub-Sheets in All 3 Sheets as specified below. (Please use these exact number when creating Sub-Sheets)*
    
@@ -67,12 +69,12 @@ npm install --save
 
   **Go to [Google developer console](https://console.cloud.google.com/) and then create a new project with any name you want. Please refer below if you don't know how to create a Google Project.**
   
-![Click on New Project](https://i.imgur.com/MmKtbP0.png)
- 
-![enter image description here](https://i.imgur.com/19Jy7FD.png)
+<img width="957" alt="Screenshot 2022-10-10 213958" src="https://user-images.githubusercontent.com/115484634/194911172-608a986b-795d-455e-ae06-48997f971e47.png">
+
 
 After creating the project go to project dashboard and then click on **Enable APIs and Services** button. Search for **Google Sheets API** in the search bar and then once you see the result click on it and then click on **Enable**. 
-![enter image description here](https://i.imgur.com/xVVooK6.png)
+
+<img width="914" alt="Screenshot 2022-10-10 215839" src="https://user-images.githubusercontent.com/115484634/194913113-16c366cf-4696-454a-9b8f-3f1e68f64b55.png">
 
 Once you enable Google Sheets API in your project, you will see the page where you can configure the settings for this API. Click on **Credentials** tab on the left sidebar. Here you will see a list of OAuth client IDs and service accounts. By default there should be none.
 
