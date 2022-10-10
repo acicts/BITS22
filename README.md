@@ -25,6 +25,7 @@ We also used some internal technologies in this code which are not showed in thi
 ## How to run the code
 This code is mainly made using express. Please refer below about how to run this code correctly.
 
+ 1. First download ```Git``` from here: ```https://git-scm.com/downloads```. If you already installed, skip this step.
  1. Clone this repository by running below command or downloading the zip file for the code.
 ```bash
 git clone https://github.com/acicts/BITS22
@@ -44,10 +45,10 @@ npm install --save
 ### How to fill ```.env``` file.
 
  - ```TOKEN``` is a random string that is used to identify admin users when logging in to the webpage. This token is added to the admin session when logged in. You can generate a random hash or input one you like.
- - ```REGISTER_ID```,```CODING_ID```,```DESIGN_ID```, ```EXPLORE_ID``` fields follows the same pattern and this is the most trickiest to fill. First of all go to [Google Sheets](https://google.com/sheets). After that follow below steps.
+ - ```REGISTER_ID```,```CODING_ID```,```DESIGN_ID```, ```EXPLORE_ID``` fields follows the same pattern and this is the most trickiest to fill. First of all go to [Google Sheets](https://google.com/sheets) and sign up. After that follow below steps.
 
     **Click on Blank**.
-    ![enter image description here](https://i.imgur.com/f11WIAs.png)
+    ![enter image description here](Spredsheet choose.png)
     
     **Add the Spreadsheet name  as "Coding Tasks" and then copy the ID of the sheet. Do this process for other 2 sheets too. Which are Design Tasks & Explore Tasks. After copying all 3 IDs go to ```.env``` file and then fill the ```CODING_ID```,```DESIGN_ID```,```EXPLORE_ID```. After this go to the spredsheets again and then open the Coding Tasks sheet first.**
 
