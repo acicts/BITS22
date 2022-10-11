@@ -173,7 +173,7 @@ What kind of pull requests are we looking?
  2. Quality Improvements
  3. Code Bugs
  4. New Concepts
- 5. Documentation Error Updates (This type of pull request does not count in BITS C02 Task ID)
+ 5. Documentation Error Updates
 
 Lead Developers who made all of this possible.
 
