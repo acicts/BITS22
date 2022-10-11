@@ -1,4 +1,10 @@
+<p align="center">
+  <img width="460" height="300" src="https://user-images.githubusercontent.com/115484634/195127416-0a3aaa7a-91f2-44e8-8b3c-c6d68e8284bc.png">
+</p>
+
 # Welcome to Bits'22
+
+<img width="925" alt="Screenshot 2022-10-11 203718" src="https://user-images.githubusercontent.com/115484634/195128997-348ad069-92d8-419a-9897-e4cdabf63e8e.png">
 
 Hello competitor. This is the official source code for the bits competition 2022. You can contribute to this code by giving us Bugs, Improvements etc. This repository is also participating to Hacktoberfest, so if you're also doing Hacktoberfest this is a great chance. Please refer below about more details.
 
