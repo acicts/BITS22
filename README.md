@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="460" height="300" src="https://user-images.githubusercontent.com/115484634/195127416-0a3aaa7a-91f2-44e8-8b3c-c6d68e8284bc.png">
+  <img width="300" alt="download (1)" src="https://user-images.githubusercontent.com/115484634/195130740-777d8ee1-7a00-4b1b-b93f-690bf2f0f823.png">
 </p>
 
 # Welcome to Bits'22
