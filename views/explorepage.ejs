@@ -33,7 +33,7 @@
                 <form action="/admin/task/approve/<%= data.task_id %>/<%= data.userid %>" method="POST"><br>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Points for the task</label>
-                    <input type="number" class="form-control" name="points" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="number" class="form-control" name="points" id="exampleInputEmail1" aria-describedby="emailHelp" min="0" max="10">
                     <div id="emailHelp" class="form-text">Please type how many points you want to give to this task</div>
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
