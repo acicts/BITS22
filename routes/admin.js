@@ -319,7 +319,8 @@ router.post(
 				let info = await transporter.sendMail(
 					generateApproveEmail(
 						process.env.USERNAME,
-						userData.username
+						userData.username,
+						userData.email
 					)
 				);
 
@@ -501,7 +502,11 @@ router.post(
 				});
 
 				let info = await transporter.sendMail(
-					generateRejectEmail(process.env.USERNAME, userData.username)
+					generateRejectEmail(
+						process.env.USERNAME,
+						userData.username,
+						userData.email
+					)
 				);
 
 				console.log('Message sent: %s', info.messageId);
