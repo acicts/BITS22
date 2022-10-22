@@ -320,7 +320,8 @@ router.post(
 					generateApproveEmail(
 						process.env.USERNAME,
 						userData.username,
-						userData.email
+						userData.email,
+						id
 					)
 				);
 
@@ -505,7 +506,8 @@ router.post(
 					generateRejectEmail(
 						process.env.USERNAME,
 						userData.username,
-						userData.email
+						userData.email,
+						id
 					)
 				);
 

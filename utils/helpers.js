@@ -1,4 +1,9 @@
-exports.generateApproveEmail = (senderName, recieverName, recieverEmail) => {
+exports.generateApproveEmail = (
+	senderName,
+	recieverName,
+	recieverEmail,
+	id
+) => {
 	return {
 		from: `"BITS 22" <${senderName}>`,
 		to: recieverEmail,
@@ -153,7 +158,7 @@ text-decoration: none !important
 <div class=t16 style="display:inline-table;text-align:initial;vertical-align:inherit;width:100%;max-width:600px;">
 <table role=presentation width=100% cellpadding=0 cellspacing=0 class=t18><tr>
 <td class=t19 style="background-color:unset;padding:40px 0 40px 0;"><table role=presentation width=100% cellpadding=0 cellspacing=0><tr><td>
-<table class=t34 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t35 style="width:350px;"><p class=t41 style="text-decoration:none;text-transform:none;color:#BBBBBB;text-align:center;mso-line-height-rule:exactly;mso-text-raise:2px;font:normal 400 12px/19px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">This email was sent to ${userData.email}. If you&#39;re not the intended receipient immediately remove this email from your system and all of it&#39;s content.</p></td>
+<table class=t34 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t35 style="width:350px;"><p class=t41 style="text-decoration:none;text-transform:none;color:#BBBBBB;text-align:center;mso-line-height-rule:exactly;mso-text-raise:2px;font:normal 400 12px/19px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">This email was sent to ${recieverEmail}. If you&#39;re not the intended receipient immediately remove this email from your system and all of it&#39;s content.</p></td>
 </tr></table>
 </td></tr><tr><td><div class=t33 style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <table class=t24 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t25 style="width:350px;"><p class=t31 style="text-decoration:none;text-transform:none;color:#BBBBBB;text-align:center;mso-line-height-rule:exactly;mso-text-raise:2px;font:normal 400 12px/19px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">2022 Bits Management. All rights reserved</p></td>
@@ -172,7 +177,7 @@ text-decoration: none !important
 	};
 };
 
-exports.generateRejectEmail = (senderName, recieverName, recieverEmail) => {
+exports.generateRejectEmail = (senderName, recieverName, recieverEmail, id) => {
 	return {
 		from: `"BITS 22" <${senderName}>`,
 		to: recieverEmail,
@@ -330,7 +335,7 @@ text-decoration: none !important
 <div class=t16 style="display:inline-table;text-align:initial;vertical-align:inherit;width:100%;max-width:600px;">
 <table role=presentation width=100% cellpadding=0 cellspacing=0 class=t18><tr>
 <td class=t19 style="background-color:unset;padding:40px 0 40px 0;"><table role=presentation width=100% cellpadding=0 cellspacing=0><tr><td>
-<table class=t34 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t35 style="width:350px;"><p class=t41 style="text-decoration:none;text-transform:none;color:#BBBBBB;text-align:center;mso-line-height-rule:exactly;mso-text-raise:2px;font:normal 400 12px/19px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">This email was sent to ${userData.email}. If you&#39;re not the intended receipient immediately remove this email from your system and all of it&#39;s content.</p></td>
+<table class=t34 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t35 style="width:350px;"><p class=t41 style="text-decoration:none;text-transform:none;color:#BBBBBB;text-align:center;mso-line-height-rule:exactly;mso-text-raise:2px;font:normal 400 12px/19px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">This email was sent to ${recieverEmail}. If you&#39;re not the intended receipient immediately remove this email from your system and all of it&#39;s content.</p></td>
 </tr></table>
 </td></tr><tr><td><div class=t33 style="mso-line-height-rule:exactly;mso-line-height-alt:20px;line-height:20px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <table class=t24 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t25 style="width:350px;"><p class=t31 style="text-decoration:none;text-transform:none;color:#BBBBBB;text-align:center;mso-line-height-rule:exactly;mso-text-raise:2px;font:normal 400 12px/19px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">2022 Bits Management. All rights reserved</p></td>
