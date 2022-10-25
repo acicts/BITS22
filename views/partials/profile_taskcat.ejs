@@ -12,11 +12,29 @@
     </div>
     <div class="tasks-item-wrapper">
         <% arr.forEach(data => { %> 
-        <div class="task-item-s" data-task-id="<%=data.task_id%>">					
+        <div class="task-item-s" data-task-id="<%=data.task_id%>00">					
             <div class="ti-header">
                 <i class="<%=icon[data.task_category]%>"></i>
                 <p class="ti-header-cat"><%= cat[data.task_category] %></p>
-                <p class="ti-header-id"><%= data.task_id %></p>
+                <% if(data.task_category === "CODING"){ %>
+                 <% if(data.task_id < 10) { %>
+                  <p class="ti-header-id">C0<%= data.task_id %></p>
+                 <% } else { %>
+                  <p class="ti-header-id">C<%= data.task_id %></p>
+                 <% } %>
+               <% } else if (data.task_category === "DESIGN"){ %> 
+                 <% if(data.task_id < 10) { %>
+                  <p class="ti-header-id">D0<%= data.task_id %></p>
+                 <% } else { %>
+                  <p class="ti-header-id">D<%= data.task_id %></p>
+                 <% } %>
+               <% } else if(data.task_category === "EXPLORE") { %>
+                 <% if(data.task_id < 10) { %>
+                  <p class="ti-header-id">E0<%= data.task_id %></p>
+                 <% } else { %>
+                  <p class="ti-header-id">E<%= data.task_id %></p>
+                <% } %>
+               <% } %>
             </div>
             
             <div class="ti-title">
@@ -30,7 +48,7 @@
             <% } %>
             
             <div class="ti-cta">
-                <a href="/task/<%=data.task_id%>">View task</a>
+                <a href="/task/<%=data.task_id%>00">View task</a>
             </div>
         </div>
         <% }) %>

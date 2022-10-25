@@ -1,20 +1,5 @@
 @import "./main"; //NOTE: this is only used to generate the css so, this should be the correct path
 
-@keyframes mascot-float {
-    0%{
-      transform: translateY(0rem);
-    }
-    25%{
-      transform: translateY(-1rem);
-    }
-    75%{
-      transform: translateY(1rem);
-    }
-    100%{
-      transform: translateY(0rem);
-    }
-}
-
 .main {
     width: 100%;
     
@@ -92,10 +77,6 @@
     display: flex;
     align-items: center;
     padding: 0 6em 6em 0;
-    animation-name: mascot-float;
-    animation-duration: 6s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
 
     img {
         width: 100%;
@@ -203,4 +184,59 @@
             }
         }
     }
+}
+
+// quiz notification
+
+.notification-container {
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    width: 500px;
+    max-width: calc(100% - 30px);
+}
+
+.notification {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    color: #fff;
+    font-size: 16px;
+    padding: 15px 20px;
+    line-height: 20px;
+    margin-bottom: 15px;
+    animation: grow 0.5s ease-in forwards;
+}
+
+@keyframes grow {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.notification.hide {
+    animation: shrink 0.3s ease-out forwards;
+}
+
+@keyframes shrink {
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+.notification strong {
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.notification-success {
+    background-color: #55b559;
 }

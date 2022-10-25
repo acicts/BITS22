@@ -33,7 +33,7 @@
                 <form action="/admin/task/approve/<%= data.task_id %>/<%= data.userid %>" method="POST"><br>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Points for the task</label>
-                    <input type="number" class="form-control" name="points" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="number" class="form-control" name="points" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                     <div id="emailHelp" class="form-text">Please type how many points you want to give to this task</div>
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
@@ -45,7 +45,7 @@
               <form action="/admin/task/decline/<%= data.task_id %>/<%= data.userid %>" method="POST"><br>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Reason for Denial</label>
-                  <input type="text" class="form-control" name="denialreason" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <input type="text" class="form-control" name="denialreason" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                   <div id="emailHelp" class="form-text">Please type your reason for the task denial</div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>

@@ -23,6 +23,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <link rel="stylesheet" href="/css/tasks.css">
+  <script type='text/javascript'>
+       window.smartlook||(function(d) {
+         var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+         var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+    c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c);
+    })(document);
+      smartlook('init', '5444d749ce5fad3604ce36be2187e6afb6d296c7', { region: 'eu' });
+  </script>
 </head>
 <body>
   <%- include('partials/nav', {active: "task", user: username}) %>
@@ -104,9 +112,20 @@
   <% if (status == "none" || status == "rejected") { %>
   <script>
     // submit task
-    
+
+  const disableSubmit = (disabled = true) => {
+        if (disabled == true) {
+            document.querySelector("#form-submit-btn").setAttribute("disabled", "disabled")
+            document.querySelector("#form-submit-btn").innerHTML = "<i class='fa-solid fa-paper-plane'></i> Submitted"
+        }
+        else {
+            document.querySelector("#form-submit-btn").removeAttribute("disabled")
+            document.querySelector("#form-submit-btn").innerHTML = "Submit"
+        }
+    }
+
     const formSubmit = () => {
-      return // WIP
+        disableSubmit(true)
     }
 
     const submitTask = (data, firstTime = true) => {
@@ -136,97 +155,16 @@
     
     document.querySelector("#submit-form").addEventListener("submit", (e) => {
       e.preventDefault()
+        formSubmit()
       const data = Object.fromEntries(new FormData(e.target).entries())
       submitTask(data)
     })
+
+    // document.addEventListener("DOMContentLoaded", e => {
+    //   document.querySelector("#form-submit-btn").removeAttribute("disabled")
+    // })
     
   </script>
   <% } %>
-<script>
-
-  var INITIAL_WAIT = 3000;
-  var INTERVAL_WAIT = 10000;
-  var ONE_SECOND = 1000;
-
-  var events = ["mouseup", "keydown", "scroll", "mousemove"];
-  var startTime = Date.now();
-  var endTime = startTime + INITIAL_WAIT;
-  var totalTime = 0;
-  var clickCount = 0;
-  var buttonClicks = {
-      total: 0,
-  };
-  var buttonClickCount = 0;
-  var linkClickCount = 0;
-  var keypressCount = 0;
-  var scrollCount = 0;
-  var mouseMovementCount = 0;
-  var linkClickCount = 0;
-
-  setInterval(function () {
-      if (!document.hidden && startTime <= endTime) {
-          startTime = Date.now();
-          totalTime += ONE_SECOND;
-      }
-  }, ONE_SECOND);
-
-  document.addEventListener("DOMContentLoaded", function () {
-      events.forEach(function (e) {
-          document.addEventListener(e, function () {
-              endTime = Date.now() + INTERVAL_WAIT;
-              if (e === "mouseup") {
-                  clickCount++;
-                  if (event.target.nodeName === 'BUTTON') {
-                      if (!buttonClicks[event.target.innerText]) {
-                          buttonClicks[event.target.innerText] = 0;
-                      }
-                      buttonClicks[event.target.innerText] += 1;
-                      buttonClicks.total += 1;
-                  }
-                  else if (event.target.nodeName === 'A') {
-                      linkClickCount++;
-                  }
-              }
-              else if (e === "keydown") {
-                  keypressCount++;
-              }
-              else if (e === "scroll") {
-                  scrollCount++;
-              }
-              else if (e === "mousemove") {
-                  mouseMovementCount++;
-              }
-          });
-      });
-  });
-
-  window.addEventListener('beforeunload', function (e) {
-      const data = { 
-          timeSpend: totalTime,
-          totalClicks: clickCount,
-          totalButtonClicks: buttonClicks,
-          totalButtonClickCount: buttonClickCount,
-          totalLinkClickCount: linkClickCount,
-          totalKeypressCount: keypressCount,
-          totalScrollCount: scrollCount,
-          totalMouseMovementCount: mouseMovementCount
-       };
-
-      fetch('/update', {
-          method: 'POST', // or 'PUT'
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-      })
-          .then((response) => response.json())
-          .then((data) => {
-              console.log('Success:', data);
-          })
-          .catch((error) => {
-              console.error('Error:', error);
-          });
-  });
-</script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <% let icon = {"CODING": "fa-solid fa-code", "DESIGN": "fa-solid fa-pen", "EXPLORE": "fa-solid fa-magnifying-glass"} %>
 
-<div class="task-item" data-task-id="<%=data.task_id%>" data-task-cat="<%=data.task_category%>" data-task-status="none" data-task-title="<%=data.task_title.toLowerCase()%>">
+<div class="task-item" data-task-id="<%=data.task_id%>00" data-task-cat="<%=data.task_category%>" data-task-status="none" data-task-title="<%=data.task_title.toLowerCase()%>">
 
     <div class="ti-bg-acnt tibg-tr"></div>
     <div class="ti-bg-acnt tibg-bl"></div>
@@ -11,13 +11,32 @@
     </div>
     
     <div class="ti-cta">
-      <a href="/task/<%=data.task_id%>">View task</a>
+      <a href="/task/<%=data.task_id%>00">View task</a>
     </div>
 
     <div class="ti-type">
       <div><i class="<%=icon[data.task_category]%>"></i></div>
       <div class="tity-divider"></div>
-      <div><p><%=data.task_id%></p></div>
+      <div><% if(data.task_category === "CODING"){ %>
+              <% if(data.task_id < 10) { %>
+               <p><b>ID</b> C0<%=data.task_id%></p>
+              <% } else { %>
+               <p><b>ID</b> C<%= data.task_id %></p>
+              <% } %>
+           <% } else if (data.task_category === "DESIGN"){ %> 
+              <% if(data.task_id < 10) { %>
+               <p><b>ID</b> D0<%=data.task_id%></p>
+              <% } else { %>
+               <p><b>ID</b> D<%=data.task_id%></p>
+              <% } %>
+           <% } else if(data.task_category === "EXPLORE") { %>
+            <% if(data.task_id < 10) { %>
+              <p><b>ID</b> E0<%=data.task_id%></p>
+            <% } else { %>
+              <p><b>ID</b> E<%= data.task_id %></p>
+            <% } %>
+           <% } %>
+    </div>
     </div>
 
     <div class="ti-status">
