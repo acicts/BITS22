@@ -177,6 +177,7 @@ If the code is running without an error, Congrats 🥳🥳. Everything is workin
 
 **READ CONTRIBUTING.md FILE BEFORE DOING A PULL REQUEST.**
 
+**Contributing Guidelines**
 What kind of pull requests are we looking?
  1. Code Improvements
  2. Quality Improvements
