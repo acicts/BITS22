@@ -36,8 +36,8 @@ const isEnabled = async (req, res, next) => {
   if (!data.competition_enabled) {
     res.render("error", {
       code: "403",
-      msg: "Competition will be started on 11th October At 6:00PM. Stay tuned!",
-      icon: "fa-solid fa-flag-checkered",
+      msg: "Site is undergoing a system maintenance. Check back later!",
+      icon: "fa-solid fa-hammer",
       username: []
     });
   } else {

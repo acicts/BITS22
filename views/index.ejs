@@ -10,6 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link href="/css/index.css" rel="stylesheet">
+    <script type='text/javascript'>
+       window.smartlook||(function(d) {
+         var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+         var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+    c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c);
+    })(document);
+      smartlook('init', '5444d749ce5fad3604ce36be2187e6afb6d296c7', { region: 'eu' });
+    </script>
   </head>
   <body>
     <%- include("partials/nav", { active: "home" , user: username}) %>
@@ -35,6 +43,8 @@
           <img src="/img/mascot-0223.png">
         </div>
       </section>
+
+      <div class="notification-container" id="notification-container"></div>
       
       <section class="info">
         <div class="info-title">What is <span>BITS ?</span></div>
@@ -49,20 +59,17 @@
 
     <%- include("partials/footer", { active: "home" }) %>
 
- <script>
+             <script>
   var countDownDate = new Date("Oct 5, 2022 18:00:00").getTime();
            
   var x = setInterval(function() {
   var now = new Date().getTime();
   var distance = countDownDate - now;
-
   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
   document.getElementById("time").innerHTML = "Starts in " + hours + "h "
   + minutes + "m " + seconds + "s ";
-
    if (distance < 0) {
     clearInterval(x);
     document.getElementById("time").innerHTML = "Register Now";
@@ -70,91 +77,42 @@
    }
   }, 1000);
  </script>
+
  <script>
+   const notificationContainer = document.getElementById('notification-container');
+   const NOTIFICATION_TYPES = {
+     SUCCESS: 'success'
+   }
 
-  var INITIAL_WAIT = 3000;
-  var INTERVAL_WAIT = 10000;
-  var ONE_SECOND = 1000;
+   function addNotification(type, text) {
+      const newNotification = document.createElement('div');
+      newNotification.classList.add('notification', `notification-${type}`);
 
-  var events = ["mouseup", "keydown", "scroll", "mousemove"];
-  var startTime = Date.now();
-  var endTime = startTime + INITIAL_WAIT;
-  var totalTime = 0;
-  var clickCount = 0;
-  var buttonClicks = {
-      total: 0,
-  };
-  var buttonClickCount = 0;
-  var linkClickCount = 0;
-  var keypressCount = 0;
-  var scrollCount = 0;
-  var mouseMovementCount = 0;
-  var linkClickCount = 0;
+      const innerNotification = `
+        <i class="fa-solid fa-circle-check"></i> ${text} <u><a href="/quiz">Go to Quiz Page</a></u>
+       `;
 
-  setInterval(function () {
-      if (!document.hidden && startTime <= endTime) {
-          startTime = Date.now();
-          totalTime += ONE_SECOND;
-      }
-  }, ONE_SECOND);
+      newNotification.innerHTML = innerNotification;
 
-  document.addEventListener("DOMContentLoaded", function () {
-      events.forEach(function (e) {
-          document.addEventListener(e, function () {
-              endTime = Date.now() + INTERVAL_WAIT;
-              if (e === "mouseup") {
-                  clickCount++;
-                  if (event.target.nodeName === 'BUTTON') {
-                      if (!buttonClicks[event.target.innerText]) {
-                          buttonClicks[event.target.innerText] = 0;
-                      }
-                      buttonClicks[event.target.innerText] += 1;
-                      buttonClicks.total += 1;
-                  }
-                  else if (event.target.nodeName === 'A') {
-                      linkClickCount++;
-                  }
-              }
-              else if (e === "keydown") {
-                  keypressCount++;
-              }
-              else if (e === "scroll") {
-                  scrollCount++;
-              }
-              else if (e === "mousemove") {
-                  mouseMovementCount++;
-              }
-          });
-      });
-  });
+      notificationContainer.appendChild(newNotification);
 
-  window.addEventListener('beforeunload', function (e) {
-      const data = { 
-          timeSpend: totalTime,
-          totalClicks: clickCount,
-          totalButtonClicks: buttonClicks,
-          totalButtonClickCount: buttonClickCount,
-          totalLinkClickCount: linkClickCount,
-          totalKeypressCount: keypressCount,
-          totalScrollCount: scrollCount,
-          totalMouseMovementCount: mouseMovementCount
-       };
+      return newNotification;
+   }
 
-      fetch('/update', {
-          method: 'POST', // or 'PUT'
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-      })
-          .then((response) => response.json())
-          .then((data) => {
-              console.log('Success:', data);
-          })
-          .catch((error) => {
-              console.error('Error:', error);
-          });
-  });
-</script>
+   function removeNotification(notification) {
+      notification.classList.add('hide');
+
+      setTimeout(() => {
+        notificationContainer.removeChild(notification);
+      }, 500);
+   }
+
+   setTimeout(() => {
+      const success = addNotification(NOTIFICATION_TYPES.SUCCESS, 'Second Quiz Date has been announced.');
+      setTimeout(() => {
+        removeNotification(success);
+      }, 15000);
+   }, 1000);
+ </script>
   </body>
 </html>

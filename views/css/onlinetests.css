@@ -222,7 +222,7 @@ body::-webkit-scrollbar-thumb:hover {
   z-index: 2;
 }
 .footer .footer-main .footer-content .footer-logo {
-  height: 3.17em;
+  height: 3.2em;
 }
 .footer .footer-main .footer-content .footer-logo img {
   height: 100%;
@@ -431,7 +431,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .tasks .task-item .ti-info {
   margin-bottom: 2.5em;
-  width: 80%;
+  width: 90%;
 }
 .tasks .task-item .ti-info h4 {
   color: #DCE7FE;

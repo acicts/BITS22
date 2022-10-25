@@ -88,12 +88,12 @@ router.post(
   isAuthenticated,
   isAdmin,
   async (req, res, next) => {
-    const userData = await User.findOne({ unique_id: req.params.user });
-    const task_dat = await Tasks.findOne({ task_id: req.params.id });
+    const userData = await User.findOne({ unique_id: parseInt(req.params.user) });
+    const task_dat = await Tasks.findOne({ task_id: parseInt(req.params.id) });
     if (!userData || !task_dat) {
       res.sendStatus(404);
     } else {
-      const taskData = await userTasks.findOne({ user_id: req.params.user });
+      const taskData = await userTasks.findOne({ user_id: parseInt(req.params.user) });
       const Admindata = await Admin.findOne({ number: 1 });
       const datag = await Analytics.findOne({ analytics_id: 1043 });
 
@@ -156,7 +156,7 @@ router.post(
 
       const choosedResults = pendingTasksArray
         .filter(function (data) {
-          return data.task_id === parseInt(req.params.id);
+          return data.task_id == req.params.id;
         })
         .map(function (data) {
           return {
@@ -170,7 +170,7 @@ router.post(
 
       const adminChoosedResults = adminTasksArray
         .filter(function (data) {
-          return data.task_id === parseInt(req.params.id);
+          return data.task_id == req.params.id && data.userId == req.params.user;
         })
         .map(function (data) {
           return {
@@ -257,7 +257,7 @@ router.post(
       })();
 
       userTasks
-        .findOne({ user_id: req.params.user })
+        .findOne({ user_id: parseInt(req.params.user) })
         .then((task) => {
           task.approved_tasks.push({
             task_title: task_dat.task_title,
@@ -274,7 +274,7 @@ router.post(
         })
         .catch(console.log);
 
-      await userTasks.updateOne({ user_id: req.params.user }, [ //Adding points to the user profile
+      await userTasks.updateOne({ user_id: parseInt(req.params.user) }, [ //Adding points to the user profile
         {
           $set: {
             total_points: {
@@ -437,7 +437,7 @@ text-decoration: none !important
 <table class=t85 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t86 style="width:315px;"><h1 class=t92 style="text-decoration:none;text-transform:none;color:#19C346;text-align:center;mso-line-height-rule:exactly;mso-text-raise:1px;font:normal 700 48px/52px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">Task Approved</h1></td>
 </tr></table>
 </td></tr><tr><td><div class=t84 style="mso-line-height-rule:exactly;mso-line-height-alt:30px;line-height:30px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
-<table class=t75 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t76 style="width:350px;"><p class=t82 style="text-decoration:none;text-transform:none;color:#666666;text-align:center;mso-line-height-rule:exactly;mso-text-raise:3px;font:normal 500 20px/30px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">Congradulations. Your Task ID: ${id} has been accepted and will count towards in the competition.</p></td>
+<table class=t75 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t76 style="width:350px;"><p class=t82 style="text-decoration:none;text-transform:none;color:#666666;text-align:center;mso-line-height-rule:exactly;mso-text-raise:3px;font:normal 500 20px/30px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';">Congradulations. Your Task ID: ${id} has been accepted and will count towards in the competition. You got ${req.body.points}/10 for this task.</p></td>
 </tr></table>
 </td></tr><tr><td><div class=t61 style="mso-line-height-rule:exactly;mso-line-height-alt:40px;line-height:40px;font-size:1px;display:block;">&nbsp;</div></td></tr><tr><td>
 <table class=t63 role=presentation cellpadding=0 cellspacing=0 align=center><tr><td class=t64 style="background-color:#0055FF;width:308px;text-align:center;line-height:58px;mso-line-height-rule:exactly;mso-text-raise:11px;border-radius:14px 14px 14px 14px;"><a class=t70 href=${process.env.SITE_URL}/profile style="display:block;text-decoration:none;color:#FFFFFF;text-align:center;mso-line-height-rule:exactly;mso-text-raise:11px;font:normal 600 21px/58px BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif, 'Fira Sans';" target=_blank>Go to Profile</a></td>
@@ -489,12 +489,12 @@ router.post(
   isAuthenticated,
   isAdmin,
   async (req, res, next) => {
-    const userData = await User.findOne({ unique_id: req.params.user });
-    const task_dat = await Tasks.findOne({ task_id: req.params.id });
+    const userData = await User.findOne({ unique_id: parseInt(req.params.user) });
+    const task_dat = await Tasks.findOne({ task_id: parseInt(req.params.id) });
     if (!userData || !task_dat) {
       res.sendStatus(404);
     } else {
-      const taskData = await userTasks.findOne({ user_id: req.params.user });
+      const taskData = await userTasks.findOne({ user_id: parseInt(req.params.user) });
       const Admindata = await Admin.findOne({ number: 1 });
 
       var currentdate = new Date();
@@ -538,7 +538,7 @@ router.post(
 
       const choosedResults = pendingTasksArray
         .filter(function (data) {
-          return data.task_id === parseInt(req.params.id);
+          return data.task_id == req.params.id;
         })
         .map(function (data) {
           return {
@@ -552,7 +552,7 @@ router.post(
 
       const adminChoosedResults = adminTasksArray
         .filter(function (data) {
-          return data.task_id === parseInt(req.params.id);
+          return data.task_id == req.params.id && data.userId == req.params.user;
         })
         .map(function (data) {
           return {
@@ -612,7 +612,7 @@ router.post(
       })();
 
       userTasks
-        .findOne({ user_id: req.params.user })
+        .findOne({ user_id: parseInt(req.params.user) })
         .then((task) => {
           task.declined_tasks.push({
             task_title: task_dat.task_title,
@@ -1296,7 +1296,7 @@ router.post(
   }
 );
 
-router.get('/analytics', async(req, res, next) => {
+router.get('/analytics', isAdmin, async(req, res, next) => {
   const data = await Analytics.findOne({ analytics_id: 1043 });
   const userdata = await User.find({ adminUser: false });
   const points = await userTasks.find()
