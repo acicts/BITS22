@@ -6,7 +6,7 @@
 
 <img width="925" alt="Screenshot 2022-10-11 203718" src="https://user-images.githubusercontent.com/115484634/195128997-348ad069-92d8-419a-9897-e4cdabf63e8e.png">
 
-Hello competitor. This is the official source code for the bits competition 2022. You can contribute to this code by giving us Bugs, Improvements etc. This repository is also participating to Hacktoberfest, so if you're also doing Hacktoberfest this is a great chance. Please refer below about more details.
+Hello competitor. This is the official source code for the bits competition 2022. You can contribute to this code by giving us Bugs, Improvements etc. This repository is also participating in Hacktoberfest, so if you're also doing Hacktoberfest this is a great chance. Please refer below for more details.
 
 ## Technologies and Packages Used
 
@@ -26,10 +26,10 @@ Hello competitor. This is the official source code for the bits competition 2022
  - sweetalert2
  - sass
 
-We also used some internal technologies in this code which are not showed in this list. 
+We also used some internal technologies in this code that are not shown in this list. 
 
 ## How to run the code
-This code is mainly made using express. Please refer below about how to run this code correctly.
+This code is mainly made using express. Please refer below to how to run this code correctly.
 
  1. First download ```Git``` from here: ```https://git-scm.com/downloads```. If you already installed, skip this step.
  1. Clone this repository by running below command or downloading the zip file for the code.
