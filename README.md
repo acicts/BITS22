@@ -6,7 +6,7 @@
 
 <img width="925" alt="Screenshot 2022-10-11 203718" src="https://user-images.githubusercontent.com/115484634/195128997-348ad069-92d8-419a-9897-e4cdabf63e8e.png">
 
-Hello competitor. This is the official source code for the bits competition 2022. You can contribute to this code by giving us Bugs, Improvements etc. This repository is also participating to Hacktoberfest, so if you're also doing Hacktoberfest this is a great chance. Please refer below about more details.
+Hello competitor. This is the official source code for the bits competition 2022. You can contribute to this code by giving us Bugs, Improvements etc. This repository is also participating in Hacktoberfest, so if you're also doing Hacktoberfest this is a great chance. Please refer below for more details.
 
 ## Technologies and Packages Used
 
@@ -26,17 +26,17 @@ Hello competitor. This is the official source code for the bits competition 2022
  - sweetalert2
  - sass
 
-We also used some internal technologies in this code which are not showed in this list. 
+We also used some internal technologies in this code that are not shown in this list. 
 
 ## How to run the code
-This code is mainly made using express. Please refer below about how to run this code correctly.
+This code is mainly made using express. Please refer below to how to run this code correctly.
 
- 1. First download ```Git``` from here: ```https://git-scm.com/downloads```. If you already installed, skip this step.
- 1. Clone this repository by running below command or downloading the zip file for the code.
+ 1. First download ```Git``` from here: ```https://git-scm.com/downloads```. If you already installed it, skip this step.
+ 1. Clone this repository by running the below command or downloading the zip file for the code.
 ```bash
 git clone https://github.com/acicts/BITS22
 ```
- 2. Change directory to the project folder
+ 2. Change the directory to the project folder
 ```bash
 cd BITS22
 ```
@@ -44,22 +44,22 @@ cd BITS22
 ```bash
 npm install --save
 ```
- 4.  Go to ```.env``` file and then follow instruction below to fill the env file properly.
+ 4.  Go to the ```.env``` file and then follow the instructions below to fill the env file properly.
 
 ##
 
 ### How to fill ```.env``` file.
 
  - ```TOKEN``` is a random string that is used to identify admin users when logging in to the webpage. This token is added to the admin session when logged in. You can generate a random hash or input one you like.
- - ```REGISTER_ID```,```CODING_ID```,```DESIGN_ID```, ```EXPLORE_ID``` fields follows the same pattern and this is the most trickiest to fill. First of all go to [Google Sheets](https://google.com/sheets) and sign up. After that follow below steps.
+ - ```REGISTER_ID```,```CODING_ID```,```DESIGN_ID```, ```EXPLORE_ID``` fields follows the same pattern and this is the trickiest to fill. First of all go to [Google Sheets](https://google.com/sheets) and sign up. After that follow the below steps.
 
     **Click on Blank**.
     
     <img width="923" alt="Screenshot 2022-10-10 215025" src="https://user-images.githubusercontent.com/115484634/194911706-aa635235-da70-498f-bbdc-6485e894c236.png">
 
-    **Add the Spreadsheet name  as "Coding Tasks" and then copy the ID of the sheet. Do this process for other 2 sheets too. Which are Design Tasks & Explore Tasks. After copying all 3 IDs go to ```.env``` file and then fill the ```CODING_ID```,```DESIGN_ID```,```EXPLORE_ID```. After this go to the spredsheets again and then open the Coding Tasks sheet first.**
+    **Add the Spreadsheet name  as "Coding Tasks" and then copy the ID of the sheet. Do this process for the other 2 sheets too. Which are Design Tasks & Explore Tasks. After copying all 3 IDs go to ```.env``` file and then fill the ```CODING_ID```,```DESIGN_ID```,```EXPLORE_ID```. After this go to the spreadsheets again and then open the Coding Tasks sheet first.**
 
-   **Click on the + button in the bottom of the page and then create Sub-Sheets in an order as specified below. (This process goes to other 2 sheets too)**
+   **Click on the + button at the bottom of the page and then create Sub-Sheets in the order as specified below. (This process goes to the other 2 sheets too)**
    
    <img width="881" alt="Screenshot 2022-10-10 215248" src="https://user-images.githubusercontent.com/115484634/194912253-3808bf91-46f3-45f2-be92-ccac94b51dff.png">
    
@@ -73,18 +73,18 @@ npm install --save
 
 	You need a ```Google Service Account``` to get access to the spreadsheets API. We have to enable Google Sheets API in our project on Google developers console.
 
-  **Go to [Google developer console](https://console.cloud.google.com/) and then create a new project with any name you want. Please refer below if you don't know how to create a Google Project.**
+  **Go to the [Google developer console](https://console.cloud.google.com/) and then create a new project with any name you want. Please refer below if you don't know how to create a Google Project.**
   
 <img width="957" alt="Screenshot 2022-10-10 213958" src="https://user-images.githubusercontent.com/115484634/194911172-608a986b-795d-455e-ae06-48997f971e47.png">
 
 
-After creating the project go to project dashboard and then click on **Enable APIs and Services** button. Search for **Google Sheets API** in the search bar and then once you see the result click on it and then click on **Enable**. 
+After creating the project go to the project dashboard and then click on **Enable APIs and Services** button. Search for **Google Sheets API** in the search bar and then once you see the result click on it and then click on **Enable**. 
 
 <img width="914" alt="Screenshot 2022-10-10 215839" src="https://user-images.githubusercontent.com/115484634/194913113-16c366cf-4696-454a-9b8f-3f1e68f64b55.png">
 
-Once you enable Google Sheets API in your project, you will see the page where you can configure the settings for this API. Click on **Credentials** tab on the left sidebar. Here you will see a list of OAuth client IDs and service accounts. By default there should be none.
+Once you enable Google Sheets API in your project, you will see the page where you can configure the settings for this API. Click on the **Credentials** tab on the left sidebar. Here you will see a list of OAuth client IDs and service accounts. By default, there should be none.
 
-Click on **Create Credentials** button at the top and select **Service Account** option.
+Click on **Create Credentials** button at the top and select the **Service Account** option.
 ![enter image description here](https://i.imgur.com/K0VOMLo.png)
 
 Enter the name and description of the service account and click **Create** button.
