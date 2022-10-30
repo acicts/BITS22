@@ -189,6 +189,11 @@ Lead Developers who made all of this possible.
 
  1. [Pasindu Ranasinghe](https://github.com/PasinduDushan)
  2. [Minuka Gunawansa](https://github.com/minukag)
+ 
+Cool Contributors.
+
+ 1. [RamiruThehan](https://github.com/RamiruThehan)
+ 2. [GAVIFDO](https://github.com/GAVIFDO)
 
 We will put your name in the contributor side in the website and also in this repository readme. If you have any questions regarding the source code please call or send a WhatsApp message to the desired contact. 
 
