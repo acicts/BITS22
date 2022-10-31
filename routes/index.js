@@ -26,6 +26,20 @@ const isAuthenticated = (req, res, next) => {
 
 const isEnabled = async (req, res, next) => {
   const data = await IMP.findOne({ power_admin: 1 });
+  if(!data){
+      let newData = new IMP({
+      power_admin: 1,
+      competition_enabled: true
+    })
+
+    newData.save((error, data) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Successfully added records for power admin");
+      }
+    })
+  }
   if (!data.competition_enabled) {
     res.render("error", {
       code: "403",
