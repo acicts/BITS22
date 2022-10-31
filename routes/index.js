@@ -25,6 +25,7 @@ const isAuthenticated = (req, res, next) => {
 };
 
 const isEnabled = async (req, res, next) => {
+  try {
   const data = await IMP.findOne({ power_admin: 1 });
   if(!data){
       let newData = new IMP({
@@ -50,9 +51,14 @@ const isEnabled = async (req, res, next) => {
   } else {
     next();
   }
+    } 
+           catch (e) {
+              console.error('Error');
+             next();
+           }
 };
 
-router.get("/", async (req, res, next) => {
+router.get("/", isEnabled, async (req, res, next) => {
   const data = await Analytics.findOne({ analytics_id: 1043 });
   if(!data){
     let newData = new Analytics({
