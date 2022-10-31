@@ -169,39 +169,18 @@ After that go ahead and paste this URI in the ```MONGO_URI``` field in ```.env``
 Now the ```.env``` file is completed. If you have made it this far that means you have interest in programming and you have patience. 
 
  **Enabling the Competition(Acesss To Parts Of The Webapp)**
- 
-Now We Have Enable The Compitition. First, Go to the file ```routes/index.js``` and Find The Code Given Below
-```javascript
-	const isEnabled = async (req, res, next) => {
-  const data = await IMP.findOne({ power_admin: 1 });
-  if (!data.competition_enabled) {
-    res.render("error", {
-      code: "403",
-      msg: "Site is undergoing a system maintenance. Check back later!",
-      icon: "fa-solid fa-hammer",
-      username: []
-    });
-  } else {
-    next();
-  }
-};
-```
-**And Replace It With This Code:-**
- 
-```javascript
-const isEnabled = async (req, res, next) => {
-    next();
-};
-```
-**Then Run These Commands**
- 
-```javascript
+ Run The Commands Given Below
+ ```js
 npm run build
 npm start
 ```
-And Register Your Account And Login To It In The Web App, Then Download "MongoDB Compass" And Access Your Database With The Same URI You Added To The ```.env```. Video On MongoDB Compass : [Here](https://www.youtube.com/watch?v=bJSj1a84I20)
-   
-After You Logged To Your Database In MongoDB Compass Go To The Folder Under The "Local" Folder
+Then Go To The Website And Register An Account And Login To It, Once You Login The Competition Will Automaticly Get Enabled
+
+**Getting Admin Access**
+
+Download And Login To Your Mongodb Database in MongoDB Compass Or Using The MongoDB Extention For VS Code([here](https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode)). You can use [MongoDB Web](https://mongodb.com) if you wish.
+
+After You Logged To Your Database, Go To The Folder Under The "Local" Folder
 ![enter image description here](https://i.imgur.com/QtbOmDk.png)
 Go To The Users Tab
 ![](https://i.imgur.com/AmGleAq.png)
@@ -211,37 +190,8 @@ When You Hover Over The User Data Some Buttons Will Pop-Up As Seen On The Image 
 ![](https://i.imgur.com/leoU8N0.png)
 Replace ```false``` with ```true``` And Click The Update Button As Seen Below
 ![](https://i.imgur.com/oOvxBzS.png)
-Now Go To The Webapp And Login Then Go To The Page ```/admin/power```
-so ```<Your Webapp Url>/admin/power``` You Will See This:
-![](https://i.imgur.com/DpH53UV.png)
-Click On The Button "Enable Competition". Now Go Back To The File ```routes/index.js``` And Replace The Code Given Below
-```javascript
-const isEnabled = async (req, res, next) => {
-    next();
-};
-```
-With
-```javascript
-	const isEnabled = async (req, res, next) => {
-  const data = await IMP.findOne({ power_admin: 1 });
-  if (!data.competition_enabled) {
-    res.render("error", {
-      code: "403",
-      msg: "Site is undergoing a system maintenance. Check back later!",
-      icon: "fa-solid fa-hammer",
-      username: []
-    });
-  } else {
-    next();
-  }
-};
-```
-Then Restart The Webapp, Press ctrl+c in Terminal, Then Run These Commands:-
-```js
-npm run build
-npm start
-```
-
+ Now The Your Account Has Admin Power, Now You Can Access ```/admin``` Page and ```admin/power``` Page
+ 
 If the code is running without an error, Congrats 🥳🥳. Everything is working as expected. You should celebrate a bit. Now find bugs, improvements and make this code awesome.
 
 **READ CONTRIBUTING.md FILE BEFORE DOING A PULL REQUEST.**
