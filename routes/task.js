@@ -32,6 +32,7 @@ const isAdmin = (req, res, next) => {
 };
 
 const isEnabled = async (req, res, next) => {
+  try {
   const data = await IMP.findOne({ power_admin: 1 });
   if(!data){
       let newData = new IMP({
@@ -57,6 +58,11 @@ const isEnabled = async (req, res, next) => {
   } else {
     next();
   }
+    } 
+           catch (e) {
+              console.error('Error');
+             next();
+           }
 };
 
 router.get("/:id", isEnabled, isAuthenticated, (req, res, next) => {
