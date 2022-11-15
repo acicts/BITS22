@@ -147,7 +147,7 @@ After that click **Create Cluster** and you'll have a MongoDB instance running. 
 
 and then don't forgot to adda built in role like below pictures. **Built-in-Role** -> **Select Role** -> **Atlas Admin** like this u can do it!
 
-![enter image description here](https://imgur.com/y3g7Epr)
+![enter image description here](https://imgur.com/y3g7Epr.png)
 
 Save that Password somewhere else because you need it in the future steps. After that scroll down and then click on **Create User**. The user details you just created is used to access our mongodb database. After that go to **Network Access** below the Database Access. In the **Network Access** click on **Add IP Address** and then click **Allow Access From Anywhere**. Click on **Confirm** after that. Please refer below image for more details if you cannot understand. 
 
