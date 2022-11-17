@@ -186,14 +186,19 @@ Download And Login To Your Mongodb Database in MongoDB Compass Or Using The Mong
 
 After You Logged To Your Database, Go To The Folder Under The "Local" Folder
 ![enter image description here](https://i.imgur.com/QtbOmDk.png)
+	
 Go To The Users Tab
 ![](https://i.imgur.com/AmGleAq.png)
+	
 When You Go To The Users Tab You Will See Your User Data It Should Look Like This:
 ![](https://i.imgur.com/KSbl5PX.png)
+	
 When You Hover Over The User Data Some Buttons Will Pop-Up As Seen On The Image Above. Click The Button That Has The Pencil Icon And Click On The Text ```False``` That Is Infront Of The Text ```adminUser```
 ![](https://i.imgur.com/leoU8N0.png)
+	
 Replace ```false``` with ```true``` And Click The Update Button As Seen Below
 ![](https://i.imgur.com/oOvxBzS.png)
+	
  Now The Your Account Has Admin Power, Now You Can Access ```/admin``` Page and ```admin/power``` Page
  
 If the code is running without an error, Congrats 🥳🥳. Everything is working as expected. You should celebrate a bit. Now find bugs, improvements and make this code awesome.
