@@ -188,6 +188,7 @@ After You Logged To Your Database, Go To The Folder Under The "Local" Folder
 ![enter image description here](https://i.imgur.com/QtbOmDk.png)
 	
 Go To The Users Tab
+	
 ![](https://i.imgur.com/AmGleAq.png)
 	
 When You Go To The Users Tab You Will See Your User Data It Should Look Like This:
