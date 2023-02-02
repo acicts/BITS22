@@ -116,7 +116,6 @@ Now find the **credentials.json** file you renamed recently and put that file in
 
 Now create another spreadsheet called ```Bits Registrations``` and then copy the ID of that spreadsheet also. Fill that ID in the ```REGISTER_ID``` field in ```.env``` file. 
 
-**THIS STEP IS OPTIONAL AND CAN BE IGNORED**
 Now we have to name some fields in the spreadsheets. Open **Coding Tasks, Design Tasks & Explore Tasks** spreadsheets and then fill the spreadsheets as below. (Repeat the same for other 2 sheets). 
 ![enter image description here](https://i.imgur.com/MFUlecq.png)
 
