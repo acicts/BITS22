@@ -1,6 +1,7 @@
 <p align="center">
-  <img width="300" alt="download (1)" src="https://user-images.githubusercontent.com/115484634/195130740-777d8ee1-7a00-4b1b-b93f-690bf2f0f823.png">
+  <img width="300" alt="download (1)" src="https://user-images.githubusercontent.com/57533877/231430915-5464b368-bb40-4181-9d2c-68613e79f49e.png">
 </p>
+
 
 # Welcome to Bits'22
 
