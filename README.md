@@ -170,7 +170,7 @@ After that go ahead and paste this URI in the ```MONGO_URI``` field in ```.env``
 
 - ```SITE_URL``` is the URL of the code instance you're running. So if you're running in localhost the URL would be ```http://localhost:3000```. If you're running using a hosting provider you may use the URL the provider give. Put the url in the **SITE_URL** field.
 
-Now the ```.env``` file is completed. If you have made it this far nice work!
+Now the ```.env``` file is completed. If you have made it this far, nice work!
 
  **Enabling the Competition(Acesss To Parts Of The Webapp)**
  Run The Commands Given Below
